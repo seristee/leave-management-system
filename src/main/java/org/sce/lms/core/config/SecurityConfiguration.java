@@ -26,7 +26,6 @@ import javax.sql.DataSource;
 
 
 @Configuration
-@ComponentScan
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
@@ -40,21 +39,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     @Qualifier("customUserDetailsService")
-    UserDetailsService userDetailsService;
+    private UserDetailsService userDetailsService;
 
     @Autowired
     DataSource dataSource;
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public BCryptPasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder(BCryptPasswordEncoder.BCryptVersion.$2Y,24);
-//        return new BCryptPasswordEncoder();
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/","/index/**").permitAll()
+                .antMatchers("/","/login").permitAll()
                 .antMatchers("/dashboard/**").hasAnyRole("USER", "ADMIN")
                 .anyRequest().authenticated();
 
@@ -81,7 +79,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.exceptionHandling()
                 .accessDeniedHandler(accessDeniedHandler);
 
-        http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
     }
 
     @Bean
