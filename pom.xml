@@ -3,17 +3,22 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <groupId>org.sce</groupId>
+    <artifactId>lms</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>lms</name>
+    <packaging>jar</packaging>
+    <description>Leave Management System</description>
+    <scm>
+        <connection>scm:git:https://github.com/seristee/leave-management-system.git</connection>
+        <developerConnection>scm:git:https://github.com/seristee/leave-management-system.git</developerConnection>
+    </scm>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.4.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>org.sce</groupId>
-    <artifactId>lms</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>lms</name>
-    <description>Leave Management System</description>
 
     <properties>
         <java.version>11</java.version>
@@ -23,6 +28,10 @@
         <font-awesome.version>5.14.0</font-awesome.version>
         <icheck-bootstrap.version>3.0.1</icheck-bootstrap.version>
         <fullcalendar.version>5.0.1</fullcalendar.version>
+        <tempusdominus-bootstrap-4.version>5.1.2</tempusdominus-bootstrap-4.version>
+        <ionicons.version>2.0.1</ionicons.version>
+        <overlayscrollbars.version>1.13.0</overlayscrollbars.version>
+        <momentjs.version>2.24.0</momentjs.version>
     </properties>
 
     <dependencies>
@@ -132,12 +141,46 @@
             <artifactId>fullcalendar</artifactId>
             <version>${fullcalendar.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>tempusdominus-bootstrap-4</artifactId>
+            <version>${tempusdominus-bootstrap-4.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>ionicons</artifactId>
+            <version>${ionicons.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>overlayscrollbars</artifactId>
+            <version>${overlayscrollbars.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>momentjs</artifactId>
+            <version>${momentjs.version}</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <executable>true</executable>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <configuration>
+                    <checkModificationExcludes>
+                        <checkModificationExclude>pom.xml</checkModificationExclude>
+                    </checkModificationExcludes>
+                    <releaseProfiles>release</releaseProfiles>
+                    <tagNameFormat>@{project.version}</tagNameFormat>
+                </configuration>
             </plugin>
         </plugins>
     </build>
