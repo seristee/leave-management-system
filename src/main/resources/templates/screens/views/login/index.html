@@ -6,15 +6,13 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <div class="login-box col-12 mx-auto">
+    <div class="login-box mx-auto">
         <div class="login-logo">
-            <a th:href="@{'/login'}"><b>Leave Management System</b>&nbsp;V0.01</a>
+            <a th:href="@{'/login'}"><b th:text="#{label.app.name}"></b></a>
         </div>
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
-                <p class="login-box-msg">Sign in to start your session</p>
-
                 <form th:action="@{/login}" method="post" autocomplete="off">
                     <div th:if="${param.error}">
                         <p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
@@ -43,24 +41,22 @@
                         <div class="col-8">
                             <div class="icheck-primary">
                                 <input type="checkbox" th:name="remember-me" id="remember">
-                                <label for="remember">
-                                    Remember Me
-                                </label>
+                                <label for="remember" th:text="#{message.remember.me}"></label>
                             </div>
                         </div>
                         <!-- /.col -->
                         <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                            <button type="submit" class="btn btn-primary btn-block" th:text="#{button.signin}"></button>
                         </div>
                         <!-- /.col -->
                     </div>
                 </form>
 
-                <p class="mb-1">
-                    <a href="forgot-password.html">I forgot my password</a>
+                <p class="mb-2">
+                    <a href="forgot-password.html" th:text="#{message.forgot.password}"></a>
                 </p>
                 <p class="mb-0">
-                    <a href="register.html" class="text-center">Register a new membership</a>
+                    <a href="register.html" class="text-center" th:text="#{message.register.membership}"></a>
                 </p>
             </div>
             <!-- /.login-card-body -->
