@@ -28,6 +28,6 @@ public class CustomLogoutSuccessHandler implements LogoutSuccessHandler {
         }
         logger.info(authentication.getName() + " has logged out successfully at " + LocalDateTime.now());
         response.setStatus(HttpServletResponse.SC_OK);
-        response.sendRedirect(request.getHeader("/logout/get.do"));
+        response.sendRedirect(request.getHeader("/logout.do"));
     }
 }

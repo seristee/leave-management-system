@@ -8,12 +8,12 @@
 <div layout:fragment="content">
     <div class="login-box mx-auto">
         <div class="login-logo">
-            <a th:href="@{'/login'}"><b th:text="#{label.app.name}"></b></a>
+            <a th:href="@{'/login.do'}"><b th:text="#{label.app.name}"></b></a>
         </div>
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
-                <form th:action="@{/login}" method="post" autocomplete="off">
+                <form th:action="@{/login.do}" method="post" autocomplete="off">
                     <div th:if="${param.error}">
                         <p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
                     </div>
@@ -54,10 +54,10 @@
 
                 <div class="row mt-3">
                 <p class="mb-0 col-6">
-                   <small><a href="forgot-password.html" th:text="#{message.forgot.password}"></a></small>
+                   <small><a th:href="@{/forgot/password/get.do}" th:text="#{message.forgot.password}"></a></small>
                 </p>
                 <p class="mb-0 float-right col-6">
-                    <small><a href="register.html" class="text-center" th:text="#{message.register.membership}"></a></small>
+                    <small><a th:href="@{/registration/get.do}" class="text-center" th:text="#{message.register.membership}"></a></small>
                 </p>
                 </div>
             </div>

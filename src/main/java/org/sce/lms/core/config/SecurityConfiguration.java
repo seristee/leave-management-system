@@ -56,22 +56,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/", "/login","/logout").permitAll()
+                .antMatchers("/", "/login.do","/logout.do","/forgot/password/get.do").permitAll()
                 .antMatchers("/dashboard/**").hasAnyRole("USER", "ADMIN")
                 .anyRequest().authenticated();
-        http.formLogin().loginPage("/login").permitAll()
-                .failureUrl("/login?fail")
+        http.formLogin().loginPage("/login.do").permitAll()
+                .failureUrl("/login.do?fail")
                 .usernameParameter("email").passwordParameter("password")
                 .successHandler(successHandler);
         http.sessionManagement().sessionFixation().migrateSession()
                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).maximumSessions(1);
         http.logout()
-                .logoutUrl("/logout")
-                .logoutSuccessHandler(logoutSuccessHandler())
-                .invalidateHttpSession(true)
-                .clearAuthentication(true)
-                .deleteCookies("JSESSIONID")
-                .logoutSuccessUrl("/login");
+                .logoutUrl("/logout.do")
+                .logoutSuccessHandler(logoutSuccessHandler());
+//                .invalidateHttpSession(true)
+//                .clearAuthentication(true)
+//                .deleteCookies("JSESSIONID");
+//                .logoutSuccessUrl("/login");
         http.rememberMe().rememberMeParameter("remember-me")
                 .rememberMeCookieName("REMEMBER-ME-COOKIE")
                 .tokenRepository(persistentTokenRepository())
