@@ -2,10 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/designs/master}">
 <head>
-    <title><span th:text="#{label.app.name}"></span></title>
+    <title>Dashboard</title>
 </head>
 <body>
-
+<div layout:fragment="content">
+    <div class="calendar col mx-auto" id="calendar"></div>
+</div>
 </body>
-
 </html>

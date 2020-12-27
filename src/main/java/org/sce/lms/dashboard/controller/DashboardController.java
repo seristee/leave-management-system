@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/dashboard")
 public class DashboardController extends GlobalController {
 
-    @GetMapping("/")
+    @GetMapping("/get")
     public String index() {
         return "screens/views/dashboard/dashboard";
     }

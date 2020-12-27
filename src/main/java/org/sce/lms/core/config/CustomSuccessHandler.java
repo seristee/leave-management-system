@@ -30,10 +30,10 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         for (GrantedAuthority grantedAuthority : authorities) {
             if (grantedAuthority.getAuthority().equals("ROLE_USER") || grantedAuthority.getAuthority().equals("USER")) {
-                redirectUrl = "/dashboard";
+                redirectUrl = "/dashboard/get";
                 break;
             } else if (grantedAuthority.getAuthority().equals("ROLE_ADMIN") || grantedAuthority.getAuthority().equals("ADMIN")) {
-                redirectUrl = "/dashboard";
+                redirectUrl = "/dashboard/get";
                 break;
             }
         }

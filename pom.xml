@@ -22,6 +22,7 @@
         <thymeleaf-layout-dialect.version>2.5.1</thymeleaf-layout-dialect.version>
         <font-awesome.version>5.14.0</font-awesome.version>
         <icheck-bootstrap.version>3.0.1</icheck-bootstrap.version>
+        <fullcalendar.version>5.0.1</fullcalendar.version>
     </properties>
 
     <dependencies>
@@ -125,6 +126,11 @@
             <groupId>org.webjars.npm</groupId>
             <artifactId>icheck-bootstrap</artifactId>
             <version>${icheck-bootstrap.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>fullcalendar</artifactId>
+            <version>${fullcalendar.version}</version>
         </dependency>
     </dependencies>
     <build>
