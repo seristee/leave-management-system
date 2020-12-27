@@ -7,13 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE"></title>
     <link rel="stylesheet" href="./webjars/bootstrap/4.5.3/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}">
-    <link rel="stylesheet" href="./webjars/font-awesome/5.14.0/css/all.min.css" th:href="@{/webjars/font-awesome/5.15.0/css/all.min.css}">
+    <link rel="stylesheet" href="./webjars/font-awesome/5.14.0/css/all.min.css" th:href="@{/webjars/font-awesome/5.14.0/css/all.min.css}">
+    <link rel="stylesheet" href="./webjars/icheck-bootstrap/3.0.1/icheck-bootstrap.css" th:href="@{/webjars/icheck-bootstrap/3.0.1/icheck-bootstrap.css}">
     <link rel="stylesheet" href="/css/adminlte.css" th:href="@{/css/adminlte.css}">
     <link rel="stylesheet" href="/css/app.css" th:href="@{/css/app.css}">
 </head>
 <body class="hold-transition login-page">
 <div class="container">
-    <div class="row justify-content-center" layout:fragment="content"></div>
+    <div class="row">
+        <div layout:fragment="content"></div>
+    </div>
 </div>
 <!-- SCRIPTS -->
 <script src="./webjars/jquery/3.5.1/jquery.slim.js" th:src="@{/webjars/jquery/3.5.1/jquery.slim.js}"></script>

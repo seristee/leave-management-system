@@ -21,6 +21,7 @@
         <bootstrap.version>4.5.3</bootstrap.version>
         <thymeleaf-layout-dialect.version>2.5.1</thymeleaf-layout-dialect.version>
         <font-awesome.version>5.14.0</font-awesome.version>
+        <icheck-bootstrap.version>3.0.1</icheck-bootstrap.version>
     </properties>
 
     <dependencies>
@@ -38,10 +39,6 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-oauth2-client</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
         <dependency>
@@ -52,7 +49,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
@@ -64,7 +61,7 @@
             <groupId>org.springframework.amqp</groupId>
             <artifactId>spring-rabbit-test</artifactId>
             <scope>test</scope>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.springframework.session</groupId>
             <artifactId>spring-session-core</artifactId>
@@ -124,22 +121,17 @@
             <artifactId>font-awesome</artifactId>
             <version>${font-awesome.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>icheck-bootstrap</artifactId>
+            <version>${icheck-bootstrap.version}</version>
+        </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
             </plugin>
         </plugins>
     </build>

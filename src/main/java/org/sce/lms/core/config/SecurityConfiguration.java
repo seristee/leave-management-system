@@ -45,40 +45,34 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     DataSource dataSource;
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder(BCryptPasswordEncoder.BCryptVersion.$2Y,24);
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/","/login").permitAll()
+                .antMatchers("/", "/login").permitAll()
                 .antMatchers("/dashboard/**").hasAnyRole("USER", "ADMIN")
                 .anyRequest().authenticated();
-
         http.formLogin().loginPage("/login").permitAll()
                 .failureUrl("/login?fail")
-                .usernameParameter("username").passwordParameter("password")
+                .usernameParameter("email").passwordParameter("password")
                 .successHandler(successHandler);
-
         http.sessionManagement().sessionFixation().migrateSession()
                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).maximumSessions(1);
-
         http.logout()
                 .logoutUrl("/logout")
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
                 .deleteCookies("JSESSIONID")
                 .logoutSuccessUrl("/login?logout");
-
         http.rememberMe().rememberMeParameter("remember-me")
                 .rememberMeCookieName("REMEMBER-ME-COOKIE")
                 .tokenRepository(persistentTokenRepository())
                 .tokenValiditySeconds(86400);
-
         http.exceptionHandling()
                 .accessDeniedHandler(accessDeniedHandler);
-
     }
 
     @Bean
@@ -91,7 +85,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     @Autowired
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("root").password(passwordEncoder().encode("test")).roles("ADMIN", "USER");
+        auth.inMemoryAuthentication().withUser("root@root.com").password(passwordEncoder().encode("test")).roles("ADMIN", "USER");
         auth.authenticationProvider(authenticationProvider());
     }
 
