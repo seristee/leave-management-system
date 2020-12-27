@@ -18,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
@@ -38,6 +39,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private CustomAccessDeniedHandler accessDeniedHandler;
 
     @Autowired
+    CustomLogoutSuccessHandler customLogoutSuccessHandler;
+
+    @Autowired
     @Qualifier("customUserDetailsService")
     private UserDetailsService userDetailsService;
 
@@ -52,7 +56,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/", "/login").permitAll()
+                .antMatchers("/", "/login","/logout").permitAll()
                 .antMatchers("/dashboard/**").hasAnyRole("USER", "ADMIN")
                 .anyRequest().authenticated();
         http.formLogin().loginPage("/login").permitAll()
@@ -63,10 +67,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).maximumSessions(1);
         http.logout()
                 .logoutUrl("/logout")
+                .logoutSuccessHandler(logoutSuccessHandler())
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
                 .deleteCookies("JSESSIONID")
-                .logoutSuccessUrl("/login?logout");
+                .logoutSuccessUrl("/login");
         http.rememberMe().rememberMeParameter("remember-me")
                 .rememberMeCookieName("REMEMBER-ME-COOKIE")
                 .tokenRepository(persistentTokenRepository())
@@ -100,5 +105,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         authenticationProvider.setUserDetailsService(userDetailsService);
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         return authenticationProvider;
+    }
+
+    @Bean
+    public LogoutSuccessHandler logoutSuccessHandler() {
+        return new CustomLogoutSuccessHandler();
     }
 }

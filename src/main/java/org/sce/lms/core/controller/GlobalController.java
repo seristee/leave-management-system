@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 public class GlobalController {
     protected Log logger = LogFactory.getLog(this.getClass());
 
-    @Value("${build.version}")
+//    @Value("${build.version}")
     protected String buildVersion;
 
     @ModelAttribute("currrentUser")
@@ -37,7 +37,8 @@ public class GlobalController {
 
     @ModelAttribute("appVersion")
     public String getBuildVersion() {
-        String[] arr = buildVersion.split("-");
-        return arr[0];
+//        String[] arr = buildVersion.split("-");
+//        return arr[0];
+        return "0.0.1";
     }
 }
