@@ -3,6 +3,79 @@
       layout:decorate="~{layout/designs/master}">
 <head>
     <title th:text="#{label.calendar}"></title>
+    <script>
+        // fullcalendar
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                themeSystem: 'bootstrap',
+                events: [
+                    {
+                        title: 'All Day Event',
+                        start: '2020-12-01',
+                    },
+                    {
+                        title: 'Long Event',
+                        start: '2020-12-07',
+                        end: '2020-12-10'
+                    },
+                    {
+                        groupId: 999,
+                        title: 'Repeating Event',
+                        start: '2020-12-09T16:00:00'
+                    },
+                    {
+                        groupId: 999,
+                        title: 'Repeating Event',
+                        start: '2020-12-16T16:00:00'
+                    },
+                    {
+                        title: 'Conference',
+                        start: '2020-12-11',
+                        end: '2020-12-13'
+                    },
+                    {
+                        title: 'Meeting',
+                        start: '2020-12-12T10:30:00',
+                        end: '2020-12-12T12:30:00'
+                    },
+                    {
+                        title: 'Lunch',
+                        start: '2020-12-12T12:00:00'
+                    },
+                    {
+                        title: 'Meeting',
+                        start: '2020-12-12T14:30:00'
+                    },
+                    {
+                        title: 'Happy Hour',
+                        start: '2020-12-12T17:30:00'
+                    },
+                    {
+                        title: 'Dinner',
+                        start: '2020-12-12T20:00:00'
+                    },
+                    {
+                        title: 'Birthday Party',
+                        start: '2020-12-13T07:00:00'
+                    },
+                    {
+                        title: 'Click for Google',
+                        url: 'http://google.com/',
+                        start: '2020-12-28'
+                    }
+                ]
+            });
+            calendar.render();
+        });
+    </script>
 </head>
 <body>
 <div layout:fragment="content">
@@ -10,12 +83,12 @@
         <div class="content-fluid">
             <div class="row">
                 <div class="col-md-12 mt-1">
-                    <div class="card card-primary">
+                    <div class="card card-primary animate__animated animate__fadeIn">
                         <div class="card-header">
                             <h3 class="card-title" th:text="#{label.calendar}"></h3>
                         </div>
                         <div class="card-body">
-
+                            <div class="calendar pb-4 pr-3" id="calendar"></div>
                         </div>
                     </div>
                 </div>

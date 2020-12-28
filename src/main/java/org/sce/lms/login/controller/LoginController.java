@@ -24,19 +24,18 @@ public class LoginController extends GlobalController {
 
     @GetMapping("/")
     private String index(){
-        logger.info("redirected to login");
         return "redirect:/login.do";
     }
 
     @GetMapping("/login.do")
     private String home(){
-        logger.info("home called");
         return "screens/views/login/index";
     }
 
     @GetMapping("/registration/get.do")
     private String registration(Model model) {
         model.addAttribute("user", new User());
+        model.addAttribute("userList", coreDao.getAllObjects(User.class));
         return "screens/views/login/registration";
     }
 

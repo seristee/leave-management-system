@@ -34,6 +34,7 @@
         <momentjs.version>2.24.0</momentjs.version>
         <maven-release-plugin.version>3.0.0-M1</maven-release-plugin.version>
         <jquery-ui.version>1.12.1</jquery-ui.version>
+        <animate.css.version>3.7.2</animate.css.version>
     </properties>
 
     <dependencies>
@@ -167,6 +168,11 @@
             <groupId>org.webjars</groupId>
             <artifactId>jquery-ui</artifactId>
             <version>${jquery-ui.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>animate.css</artifactId>
+            <version>${animate.css.version}</version>
         </dependency>
     </dependencies>
     <build>

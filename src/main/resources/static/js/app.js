@@ -1,77 +1,18 @@
-// fullcalendar
-document.addEventListener('DOMContentLoaded', function() {
-    let calendarEl = document.getElementById('calendar');
-
-    let calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        headerToolbar: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay'
-        },
-        themeSystem: 'bootstrap',
-        events: [
-            {
-                title: 'All Day Event',
-                start: '2020-12-01',
-            },
-            {
-                title: 'Long Event',
-                start: '2020-12-07',
-                end: '2020-12-10'
-            },
-            {
-                groupId: 999,
-                title: 'Repeating Event',
-                start: '2020-12-09T16:00:00'
-            },
-            {
-                groupId: 999,
-                title: 'Repeating Event',
-                start: '2020-12-16T16:00:00'
-            },
-            {
-                title: 'Conference',
-                start: '2020-12-11',
-                end: '2020-12-13'
-            },
-            {
-                title: 'Meeting',
-                start: '2020-12-12T10:30:00',
-                end: '2020-12-12T12:30:00'
-            },
-            {
-                title: 'Lunch',
-                start: '2020-12-12T12:00:00'
-            },
-            {
-                title: 'Meeting',
-                start: '2020-12-12T14:30:00'
-            },
-            {
-                title: 'Happy Hour',
-                start: '2020-12-12T17:30:00'
-            },
-            {
-                title: 'Dinner',
-                start: '2020-12-12T20:00:00'
-            },
-            {
-                title: 'Birthday Party',
-                start: '2020-12-13T07:00:00'
-            },
-            {
-                title: 'Click for Google',
-                url: 'http://google.com/',
-                start: '2020-12-28'
-            }
-        ]
-    });
-    calendar.render();
-});
-
 $(function () {
 
+    var url = window.location;
+    // for single sidebar menu
+    $('ul.nav-sidebar a').filter(function () {
+        return this.href == url;
+    }).addClass('active');
+
+    // for sidebar menu and treeview
+    $('ul.nav-treeview a').filter(function () {
+        return this.href == url;
+    }).parentsUntil(".nav-sidebar > .nav-treeview")
+        .css({'display': 'block'})
+        .addClass('menu-open').prev('a')
+        .addClass('active');
 
     //password reset
 

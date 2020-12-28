@@ -10,7 +10,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card card-primary">
+                    <div class="card card-secondary">
                         <div class="card-header">
                             <h3 class="card-title" th:text="#{label.user.registration.form}"></h3>
                         </div>
@@ -29,6 +29,22 @@
                                         <div class="col-md-4">
                                             <label for="lastName" th:text="#{label.last.name}"></label>
                                             <input type="text" class="form-control form-control-sm" th:field="*{person.lastName}" id="lastName" th:required="true">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="addressLine1" th:text="#{label.addressline1}"></label>
+                                            <input type="text" class="form-control form-control-sm" th:field="*{person.address.addressLine1}" id="addressLine1" th:required="true">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="addressLine2" th:text="#{label.addressline2}"></label>
+                                            <input type="text" class="form-control form-control-sm" th:field="*{person.address.addressLine2}" id="addressLine2">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="municipality" th:text="#{label.municipality}"></label>
+                                            <input type="text" class="form-control form-control-sm" th:field="*{person.address.municipality}" id="municipality" th:required="true">
                                         </div>
                                     </div>
                                 </div>
