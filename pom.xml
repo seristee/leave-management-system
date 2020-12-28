@@ -33,6 +33,7 @@
         <overlayscrollbars.version>1.13.0</overlayscrollbars.version>
         <momentjs.version>2.24.0</momentjs.version>
         <maven-release-plugin.version>3.0.0-M1</maven-release-plugin.version>
+        <jquery-ui.version>1.12.1</jquery-ui.version>
     </properties>
 
     <dependencies>
@@ -161,6 +162,11 @@
             <groupId>org.webjars</groupId>
             <artifactId>momentjs</artifactId>
             <version>${momentjs.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery-ui</artifactId>
+            <version>${jquery-ui.version}</version>
         </dependency>
     </dependencies>
     <build>
