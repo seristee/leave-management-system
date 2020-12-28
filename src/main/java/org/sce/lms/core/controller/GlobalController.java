@@ -41,4 +41,6 @@ public class GlobalController {
 //        return arr[0];
         return "0.0.1";
     }
+
+
 }
