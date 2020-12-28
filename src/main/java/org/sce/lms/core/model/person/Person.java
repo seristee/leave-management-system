@@ -2,26 +2,24 @@ package org.sce.lms.core.model.person;
 
 import java.time.LocalDate;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.ForeignKey;
-import javax.persistence.JoinColumn;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.OneToOne;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 import org.sce.lms.core.model.ActivatableEntity;
 
-@MappedSuperclass
+@Entity
 @Data
 @NoArgsConstructor
 @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
+@Table(name = "lms_people")
+@ToString
+@AttributeOverride(name = "id", column = @Column(name = "person_id"))
 public class Person extends ActivatableEntity {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "contact_information_id", foreignKey = @ForeignKey(name="FK_PERSON_CONTACT_INFORMATION"))

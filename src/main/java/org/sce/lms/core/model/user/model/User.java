@@ -3,10 +3,12 @@ package org.sce.lms.core.model.user.model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.sce.lms.core.model.ModifiableEntity;
+import org.sce.lms.core.model.person.Person;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ import java.util.List;
 @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
 @Table(name = "lms_users")
+@ToString
 @AttributeOverride(name = "id", column = @Column(name = "user_id"))
 public class User extends ModifiableEntity {
     @Column(name="username", unique = true, nullable = false)
@@ -40,4 +43,7 @@ public class User extends ModifiableEntity {
     @OneToOne
     @JoinColumn(name="account_type_id", foreignKey=@ForeignKey(name="FK_ACCOUNT_INFO_ACCOUNT_TYPE"))
     private AccountType accountType;
+    @OneToOne
+    @JoinColumn(name="person_id", foreignKey=@ForeignKey(name="FK_USER_PERSON"))
+    private Person person;
 }
