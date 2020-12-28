@@ -24,9 +24,15 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a th:href="@{/dashboard/get}" class="nav-link active">
+                    <a th:href="@{/dashboard/get.do}" class="nav-link active">
                         <i class="nav-icon fas fa-th"></i>
-                        <p>Dashboard</p>
+                        <p th:text="#{label.dashboard}"></p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/calendar/get.do}" class="nav-link active">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p th:text="#{label.calendar}"></p>
                     </a>
                 </li>
 
