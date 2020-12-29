@@ -44,7 +44,11 @@
                                         </div>
                                         <div class="col-md-4">
                                             <label for="municipality" th:text="#{label.municipality}"></label>
-                                            <input type="text" class="form-control form-control-sm" th:field="*{person.address.municipality}" id="municipality" th:required="true">
+                                            <select th:field="*{person.address.municipality}" class="form-control form-control-sm" id="municipality" th:required="true">
+                                                <option th:each="municipality : ${municipalityList}"
+                                                    th:value="${type.id}"
+                                                    th:text="${type.constant}">Please select an option</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>

@@ -2,6 +2,7 @@ package org.sce.lms.administration.controller;
 
 import org.sce.lms.core.controller.GlobalController;
 import org.sce.lms.core.dao.CoreDao;
+import org.sce.lms.core.model.person.Municipality;
 import org.sce.lms.core.model.user.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,7 @@ public class AdministrationController extends GlobalController {
     private String userManagement(Model model){
         model.addAttribute("user", new User());
         model.addAttribute("userList", coreDao.getAllObjects(User.class));
+        model.addAttribute("municipalityList", coreDao.getAllObjects(Municipality.class));
         return "screens/views/administration/usermanagement";
     }
 
