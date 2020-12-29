@@ -6,18 +6,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class CustomErrorController extends GlobalController implements ErrorController {
-    @GetMapping("/error")
+    @GetMapping("/error.do")
     public String handleError(){
         return "screens/views/error/404";
     }
 
-    @GetMapping("/access/denied")
+    @GetMapping("/access/denied.do")
     public String accessDenied() {
         return "screens/views/error/403";
     }
 
     @Override
     public String getErrorPath() {
-        return "/error";
+        return "/error.do";
     }
 }

@@ -8,7 +8,7 @@
 <div layout:fragment="content">
     <div class="login-box mx-auto">
         <div class="login-logo">
-            <a th:href="@{'/login.do'}"><b th:text="#{label.app.name}"></b></a>
+            <a th:href="@{'/login.do'}"><b class="text-white" th:text="#{label.app.name}"></b></a>
         </div>
         <!-- /.login-logo -->
         <div class="card">
@@ -55,9 +55,6 @@
                 <div class="row mt-3">
                 <p class="mb-0 col-6">
                    <small><a th:href="@{/forgot/password/get.do}" th:text="#{message.forgot.password}"></a></small>
-                </p>
-                <p class="mb-0 float-right col-6">
-                    <small><a th:href="@{/registration/get.do}" class="text-center" th:text="#{message.register.membership}"></a></small>
                 </p>
                 </div>
             </div>

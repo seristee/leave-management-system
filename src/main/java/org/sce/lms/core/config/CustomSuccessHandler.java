@@ -35,6 +35,8 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
             } else if (grantedAuthority.getAuthority().equals("ROLE_ADMIN") || grantedAuthority.getAuthority().equals("ADMIN")) {
                 redirectUrl = "/dashboard/get.do";
                 break;
+            } else {
+                redirectUrl = "/access/denied.do";
             }
         }
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
