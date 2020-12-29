@@ -1,0 +1,22 @@
+<li class="nav-item" xmlns:th="http://www.thymeleaf.org" th:fragment="leaveMenu">
+    <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-chart-pie"></i>
+        <p> <span th:text="#{label.leave}"></span>
+            <i class="fas fa-angle-left right"></i>
+        </p>
+    </a>
+    <ul class="nav nav-treeview">
+        <li class="nav-item">
+            <a th:href="@{/leave/application/user/1/get.do}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p th:text="#{label.leave.application}"></p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a th:href="@{/leave/application/manage/get.do}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p th:text="#{label.manage.leave}"></p>
+            </a>
+        </li>
+    </ul>
+</li>

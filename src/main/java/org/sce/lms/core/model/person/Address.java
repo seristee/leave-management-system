@@ -32,4 +32,7 @@ public class Address extends ActivatableEntity {
     @OneToOne
     @JoinColumn(name = "municipality_id")
     private Municipality municipality;
+
+    @Column(name="zip_code")
+    private String zipCode;
 }

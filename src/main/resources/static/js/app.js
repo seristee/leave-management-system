@@ -30,5 +30,10 @@ $(function () {
         "ordering": true,
         "info":     true,
     });
+    $('.datePicker').datetimepicker({
+        format: 'L'
+    });
+    //datepicker
+
 
 });

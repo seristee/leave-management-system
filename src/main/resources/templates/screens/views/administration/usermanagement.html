@@ -21,37 +21,66 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <div class="row">
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <label for="firstName" th:text="#{label.first.name}"></label>
-                                            <input type="text" class="form-control form-control-sm" th:field="*{person.firstName}" id="firstName" th:required="true">
+                                            <input type="text" class="form-control form-control-sm" th:field="*{person.firstName}" id="firstName">
+                                            <span th:if="${#fields.hasErrors('person.firstName')}" th:errors="*{person.firstName}">FirstName error</span>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <label for="middleName" th:text="#{label.middle.name}"></label>
                                             <input type="text" class="form-control form-control-sm" th:field="*{person.middleName}" id="middleName">
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <label for="lastName" th:text="#{label.last.name}"></label>
-                                            <input type="text" class="form-control form-control-sm" th:field="*{person.lastName}" id="lastName" th:required="true">
+                                            <input type="text" class="form-control form-control-sm" th:field="*{person.lastName}" id="lastName">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="alias" th:text="#{label.alias}"></label>
+                                            <input type="text" class="form-control form-control-sm" th:field="*{person.alias}" id="alias">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <label for="addressLine1" th:text="#{label.addressline1}"></label>
-                                            <input type="text" class="form-control form-control-sm" th:field="*{person.address.addressLine1}" id="addressLine1" th:required="true">
+                                            <label for="gender" th:text="#{label.gender}"></label>
+                                            <select th:field="*{person.gender.id}" class="form-control form-control-sm select2" id="gender">
+                                                <option th:each="gender : ${genderList}"
+                                                        th:value="${gender.id}"
+                                                        th:text="${gender.constant}">Please select an option</option>
+                                            </select>
                                         </div>
                                         <div class="col-md-4">
+                                            <label for="ssn" th:text="#{label.ssn}"></label>
+                                            <input type="text" class="form-control form-control-sm" th:field="*{person.socialSecurityNumber}" id="ssn">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="dob" th:text="#{label.dob}"></label>
+                                            <input type="text" class="form-control form-control-sm datePicker" th:field="*{person.dateOfBirth}" id="dob">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label for="addressLine1" th:text="#{label.addressline1}"></label>
+                                            <input type="text" class="form-control form-control-sm" th:field="*{person.address.addressLine1}" id="addressLine1">
+                                        </div>
+                                        <div class="col-md-3">
                                             <label for="addressLine2" th:text="#{label.addressline2}"></label>
                                             <input type="text" class="form-control form-control-sm" th:field="*{person.address.addressLine2}" id="addressLine2">
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <label for="municipality" th:text="#{label.municipality}"></label>
-                                            <select th:field="*{person.address.municipality.id}" class="form-control form-control-sm select2" id="municipality" th:required="true">
+                                            <select th:field="*{person.address.municipality.id}" class="form-control form-control-sm select2" id="municipality">
                                                 <option th:each="municipality : ${municipalityList}"
                                                     th:value="${municipality.id}"
                                                     th:text="${municipality.constant}">Please select an option</option>
                                             </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="zipcode" th:text="#{label.zipcode}"></label>
+                                            <input type="text" class="form-control form-control-sm" th:field="*{person.address.zipCode}" id="zipcode">
                                         </div>
                                     </div>
                                 </div>

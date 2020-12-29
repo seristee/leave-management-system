@@ -1,5 +1,5 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary elevation-4" xmlns:th="http://www.thymeleaf.org">
+<aside class="main-sidebar sidebar-dark-primary elevation-4" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
     <!-- Brand Logo -->
     <a th:href="@{/dashboard/get}" class="brand-link">
         <img th:src="@{/img/AdminLTELogo.png}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -37,51 +37,9 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-copy"></i>
-                        <p><span th:text="#{label.administration}"></span>
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a th:href="@{/admin/profile/user/1/get.do}"class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p th:text="#{label.profile}"></p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a th:href="@{/admin/user/management/get.do}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p th:text="#{label.user.management}"></p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                <li class="nav-item" layout:replace="/layout/fragments/menu/admin-menu"></li>
 
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-chart-pie"></i>
-                        <p> <span th:text="#{label.leave}"></span>
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a th:href="@{/leave/application/user/1/get.do}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p th:text="#{label.leave.application}"></p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a th:href="@{/leave/application/manage/get.do}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p th:text="#{label.manage.leave}"></p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                <li class="nav-item" layout:replace="/layout/fragments/menu/leave-menu"></li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

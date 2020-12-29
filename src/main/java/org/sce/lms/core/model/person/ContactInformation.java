@@ -10,6 +10,7 @@ import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 
 @Entity
 @Data
@@ -23,6 +24,7 @@ public class ContactInformation extends ActivatableEntity {
     private String phoneNumber;
     @Column(name = "cell_phone_number")
     private String otherContactNumber;
+    @Email(message = "Please enter a valid email address")
     @Column(name = "email_address", unique = true)
     private String emailAddress;
 }
