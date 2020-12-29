@@ -4,16 +4,22 @@ import org.sce.lms.core.controller.GlobalController;
 import org.sce.lms.core.dao.CoreDao;
 import org.sce.lms.core.model.person.Municipality;
 import org.sce.lms.core.model.user.model.User;
+import org.sce.lms.core.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RequestMapping("/admin")
 @Controller
 public class AdministrationController extends GlobalController {
     @Autowired
     private CoreDao coreDao;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/profile/user/{userid}/get.do")
     private String index(Model model, @PathVariable long userid){
@@ -29,8 +35,13 @@ public class AdministrationController extends GlobalController {
     }
 
     @PostMapping("/user/management/save.do")
-    private String saveUser(@ModelAttribute User user, Model model){
-        System.out.println(user.toString());
+    private String saveUser(@ModelAttribute User user, Model model, HttpServletRequest request){
+        User dbUser = (User) coreDao.getObjectByCriteria(User.class, "username", user.getUsername());
+        if(user.getPassword().equals(request.getParameter("confirmPassword"))){
+            if(!user.equals(dbUser)){
+                userService.save(user);
+            }
+        }
         return "redirect:/admin/user/management/get.do";
     }
 }

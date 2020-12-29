@@ -72,7 +72,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated();
         http.formLogin().loginPage("/login.do").permitAll()
                 .failureUrl("/login.do?fail")
-                .usernameParameter("email").passwordParameter("password")
+                .usernameParameter("username").passwordParameter("password")
                 .successHandler(successHandler);
         http.sessionManagement().sessionFixation().migrateSession()
                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).maximumSessions(1);
@@ -101,7 +101,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     @Autowired
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("root@root.com").password(passwordEncoder().encode("test")).roles("ADMIN", "USER");
+        auth.inMemoryAuthentication().withUser("root").password(passwordEncoder().encode("test")).roles("ADMIN", "USER");
         auth.authenticationProvider(authenticationProvider());
     }
 

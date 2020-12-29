@@ -5,6 +5,7 @@ $(function () {
     $('ul.nav-sidebar a').filter(function () {
         return this.href == url;
     }).addClass('active');
+        //.css('color', 'white');
 
     // for sidebar menu and treeview
     $('ul.nav-treeview a').filter(function () {
@@ -15,5 +16,14 @@ $(function () {
         .addClass('active');
 
     //password reset
+
+
+
+    //select2
+    $('.select2').select2();
+
+
+    //datatables
+    $('.dataTable').DataTable();
 
 });

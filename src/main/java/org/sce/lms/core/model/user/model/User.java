@@ -11,6 +11,7 @@ import org.sce.lms.core.model.ModifiableEntity;
 import org.sce.lms.core.model.person.Person;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,8 +25,10 @@ import java.util.List;
 @AttributeOverride(name = "id", column = @Column(name = "user_id"))
 public class User extends ModifiableEntity {
     @Column(name="username", unique = true, nullable = false)
+    @NotNull(message = "Username is required")
     private String username;
     @Column(name="password", nullable = false)
+    @NotNull(message="Password is required")
     private String password;
     @Column(name = "disabled")
     private boolean disabled;
@@ -43,7 +46,7 @@ public class User extends ModifiableEntity {
     @OneToOne
     @JoinColumn(name="account_type_id", foreignKey=@ForeignKey(name="FK_ACCOUNT_INFO_ACCOUNT_TYPE"))
     private AccountType accountType;
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="person_id", foreignKey=@ForeignKey(name="FK_USER_PERSON"))
     private Person person;
 }
