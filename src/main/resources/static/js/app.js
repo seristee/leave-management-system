@@ -24,6 +24,11 @@ $(function () {
 
 
     //datatables
-    $('.dataTable').DataTable();
+    $('.dataTable').DataTable({
+        responsive: true,
+        "paging":   true,
+        "ordering": true,
+        "info":     true,
+    });
 
 });
