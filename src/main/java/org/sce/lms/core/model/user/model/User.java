@@ -12,6 +12,7 @@ import org.sce.lms.core.model.ModifiableEntity;
 import org.sce.lms.core.model.person.Person;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,19 +25,27 @@ import java.util.List;
 @Table(name = "lms_users")
 @ToString
 @AttributeOverride(name = "id", column = @Column(name = "user_id"))
+@SQLDelete(sql = "UPDATE lms_users SET active=false WHERE user_id=?")
 public class User extends ModifiableEntity {
     @Column(name="username", unique = true, nullable = false)
     @NotNull(message = "Username is required")
+    @NotEmpty(message = "Username cannot be empty")
     private String username;
+
     @Column(name="password", nullable = false)
     @NotNull(message="Password is required")
+    @NotEmpty(message = "Password cannot be empty")
     private String password;
+
     @Column(name = "disabled")
     private boolean disabled;
+
     @Column(name = "account_expired")
     private boolean accountExpired;
+
     @Column(name = "credentials_expired")
     private boolean credentialsExpired;
+
     @Column(name = "account_locked")
     private boolean accountLocked;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 
 
 import lombok.Data;
@@ -32,6 +33,9 @@ public class Person extends ActivatableEntity {
 
     @Column(name = "date_of_birth")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotNull(message = "Please enter birth date")
+    @Past(message = "Birth date should be less than current date!!")
+//    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateOfBirth;
 
     @OneToOne

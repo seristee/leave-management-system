@@ -33,7 +33,7 @@ $(function () {
     $('.datePickerPast').datetimepicker({
         format: 'YYYY-MM-DD',
         maxDate: new Date(),
-        useCurrent: false,
+        // useCurrent: false,
         icons: {
             time: "fa fa-clock-o",
             date: "fa fa-calendar",

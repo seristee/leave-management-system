@@ -1,5 +1,6 @@
 package org.sce.lms.core.dao;
 
+import javassist.bytecode.stackmap.TypeData;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.HibernateException;
@@ -11,6 +12,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.lang.reflect.Field;
 import java.util.Calendar;
 import java.util.List;
 
@@ -39,6 +41,17 @@ public abstract class CoreAbastractDao {
         if(object != null) {
             getSession().delete(entity);
         }
+    }
+
+    // Todo set objects active value to false for soft delete
+    public Object softDeleteEntity(String className, Long id, String identifier, Object identifierValue) throws ClassNotFoundException, NoSuchFieldException {
+        Class clazz = Class.forName(className);
+        Field field = clazz.getField(identifier);
+        if(field != null){
+            Object object = getEntityById(clazz,id);
+
+        }
+        return null;
     }
 
     /**

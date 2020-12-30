@@ -14,7 +14,6 @@ import java.io.Serializable;
 public class Identifiable implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, unique = true)
     protected Long id;
 
 

@@ -33,7 +33,12 @@ public class AdministrationController extends GlobalController {
     @GetMapping("/user/management/get.do")
     public String userManagement(Model model){
         model.addAttribute("user", new User());
-        return setAdminModels(model);
+        model.addAttribute("userList", coreDao.getAllObjects(User.class));
+        model.addAttribute("municipalityList", coreDao.getAllObjects(Municipality.class));
+        model.addAttribute("genderList", coreDao.getAllObjects(Gender.class));
+        model.addAttribute("rolesList", coreDao.getAllObjects(Authority.class));
+        return "screens/views/administration/usermanagement";
+//        return setAdminModels(model);
     }
 
     @PostMapping("/user/management/save.do")
@@ -56,9 +61,9 @@ public class AdministrationController extends GlobalController {
     }
 
     @RequestMapping("/user/{userid}/management/delete.do")
-    public String deleteUser(@PathVariable long userid, Model model, @ModelAttribute User user) throws NoSuchFieldException, IllegalAccessException {
-
-//        coreDao.softDeleteObject(User.class, userid, "active");
+    public String deleteUser(@PathVariable long userid, Model model, @ModelAttribute User user) {
+        model.addAttribute("user", user);
+        coreDao.deleteObject(User.class, userid);
         return "redirect:/admin/user/management/get.do";
     }
 
