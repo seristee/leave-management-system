@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -38,7 +39,7 @@ public class AdministrationController extends GlobalController {
     }
 
     @PostMapping("/user/management/save.do")
-    public String saveUser(@ModelAttribute("user") @Valid User user, Model model, HttpServletRequest request, BindingResult result){
+    public String saveUser(@Valid @ModelAttribute("user") User user, Model model, HttpServletRequest request, BindingResult result, RedirectAttributes ra){
         if(result.hasErrors()){
             return "screens/views/administration/usermanagement";
         } else {

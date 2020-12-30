@@ -106,13 +106,13 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <label for="username" th:text="#{label.username}"></label>
-                                            <input type="text" autocomplete="false" class="form-control form-control-sm" th:field="*{username}" id="username">
-                                            <span class="badge badge-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</span>
+                                            <input type="text" autocomplete="false" class="form-control form-control-sm" th:field="*{username}" id="username"
+                                                   th:classappend="${#fields.hasErrors('username')} ? 'badge badge-danger'">
                                         </div>
                                         <div class="col-md-4">
                                             <label for="password" th:text="#{label.password}"></label>
-                                            <input type="password" autocomplete="false" class="form-control form-control-sm" th:field="*{password}" id="password">
-                                            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</span>
+                                            <input type="password" autocomplete="false" class="form-control form-control-sm" th:field="*{password}" id="password"
+                                                   th:classappend="${#fields.hasErrors('password')} ? 'badge badge-danger'">
                                         </div>
                                         <div class="col-md-4">
                                             <label for="confirmPassword" th:text="#{label.confirm.password}"></label>
@@ -121,9 +121,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="row text-uppercase">
+                                    <div class="row ">
                                         <div class="col-md-12">
-                                            <label for="">account information</label>
+                                            <label for="" th:text="#{label.account.information}"></label>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="icheck-primary">
@@ -153,8 +153,8 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="text-uppercase">
+                                        <div class="col-md-12 ">
+                                            <div class="">
                                                 <label for="role" th:text="#{label.roles}"></label>
                                             </div>
                                             <div class="icheck-primary form-check-inline"
