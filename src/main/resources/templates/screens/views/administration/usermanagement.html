@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/designs/master}">
 <head>
-    <title th:text="#{label.dashboard}"></title>
+    <title th:text="#{label.user.management}"></title>
 </head>
 <body>
 <div layout:fragment="content">
@@ -56,7 +56,7 @@
                                         </div>
                                         <div class="col-md-4">
                                             <label for="dob" th:text="#{label.dob}"></label>
-                                            <input type="text" class="form-control form-control-sm datePicker" th:field="*{person.dateOfBirth}" id="dob">
+                                            <input type="text" class="form-control form-control-sm datePickerPast" th:field="*{person.dateOfBirth}" id="dob">
                                         </div>
                                     </div>
                                 </div>

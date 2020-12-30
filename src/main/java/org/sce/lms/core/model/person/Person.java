@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 import org.sce.lms.core.model.ActivatableEntity;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Data
@@ -29,7 +30,7 @@ public class Person extends ActivatableEntity {
     @Column(name = "social_security_number")
     private String socialSecurityNumber;
 
-    @Column(name = "date_of_birth")
+    @Column(name = "date_of_birth", columnDefinition = "DATE")
     private LocalDate dateOfBirth;
 
     @OneToOne

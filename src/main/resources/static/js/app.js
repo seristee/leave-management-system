@@ -30,8 +30,16 @@ $(function () {
         "ordering": true,
         "info":     true,
     });
-    $('.datePicker').datetimepicker({
-        format: 'L'
+    $('.datePickerPast').datetimepicker({
+        format: 'YYYY-MM-DD',
+        maxDate: new Date(),
+        useCurrent: false,
+        icons: {
+            time: "fa fa-clock-o",
+            date: "fa fa-calendar",
+            up: "fa fa-arrow-up",
+            down: "fa fa-arrow-down"
+        }
     });
     //datepicker
 

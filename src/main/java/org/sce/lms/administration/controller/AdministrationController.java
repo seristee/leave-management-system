@@ -40,13 +40,23 @@ public class AdministrationController extends GlobalController {
 
     @PostMapping("/user/management/save.do")
     private String saveUser(@Valid @ModelAttribute("user") User user, Model model, HttpServletRequest request, BindingResult result){
-        System.out.println(result.hasErrors());
         User dbUser = (User) coreDao.getObjectByCriteria(User.class, "username", user.getUsername());
+        user.getPerson().setDateOfBirth(convertToLocalDate(request.getParameter("person.dateOfBirth")));
+
         if(user.getPassword().equals(request.getParameter("confirmPassword"))){
             if(!user.equals(dbUser)){
                 userService.save(user);
             }
         }
         return "redirect:/admin/user/management/get.do";
+    }
+
+    @GetMapping("/user/{id}/management/edit.do")
+    private String getUser(@PathVariable("userid") long id, Model model) {
+        model.addAttribute("user", coreDao.getObjectById(User.class, id));
+        model.addAttribute("userList", coreDao.getAllObjects(User.class));
+        model.addAttribute("municipalityList", coreDao.getAllObjects(Municipality.class));
+        model.addAttribute("genderList", coreDao.getAllObjects(Gender.class));
+        return "screens/views/administration/usermanagement";
     }
 }
