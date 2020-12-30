@@ -6,3 +6,6 @@ body, html {
     width: 85vw;
 }
 
+label {
+    /*text-transform: uppercase;*/
+}

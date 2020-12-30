@@ -120,6 +120,9 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="row text-uppercase">
+                                        <div class="col-md-12">
+                                            <label for="">account information</label>
+                                        </div>
                                         <div class="col-md-3">
                                             <div class="icheck-primary">
                                                 <input type="checkbox" id="locked" th:field="*{accountLocked}">
@@ -149,9 +152,11 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <label for="role" th:text="#{label.roles}"></label>
-                                            <div class="icheck-primary" th:each="role, status : ${rolesList}" id="role">
-                                                <input type="checkbox" id="" th:value="${role.id}" th:field="*{userRoles[0].id}" class="">
+                                            <div class="text-uppercase">
+                                                <label for="role" th:text="#{label.roles}"></label>
+                                            </div>
+                                            <div class="icheck-primary form-check-inline" th:each="role, status : ${rolesList}" id="role">
+                                                <input type="checkbox" class="form-control" id="" th:value="${role.id}" th:field="*{userRoles[0].id}">
                                                 <label for="" th:text="${role.constant}"></label>
                                             </div>
                                         </div>
