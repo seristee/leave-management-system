@@ -197,7 +197,7 @@
                                             <td th:text="${user.username}"></td>
                                             <td th:text="${user.userRoles}"></td>
                                             <td>
-                                                <a th:href="@{/admin/user/{userid}/management/edit.do (userid=1)}" th:title="#{label.edit}"><i class="far fa-edit"></i></a>
+                                                <a th:href="@{/admin/user/{userid}/management/edit.do (userid=${user.id})}" th:title="#{label.edit}"><i class="far fa-edit"></i></a>
 <!--                                                <a th:href="@{/admin/user/{userid}/management/delete.do (userid=1)}" th:title="#{label.delete}"><i class="far fa-trash-alt"></i></a>-->
                                             </td>
                                         </tr>
