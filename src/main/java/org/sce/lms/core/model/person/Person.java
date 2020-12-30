@@ -30,7 +30,8 @@ public class Person extends ActivatableEntity {
     @Column(name = "social_security_number")
     private String socialSecurityNumber;
 
-    @Column(name = "date_of_birth", columnDefinition = "DATE")
+    @Column(name = "date_of_birth")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
 
     @OneToOne

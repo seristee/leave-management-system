@@ -56,9 +56,4 @@ public class GlobalController {
     public LocalDate convertToLocalDate(String reqDate) {
         return LocalDate.parse(reqDate, DateTimeFormatter.ofPattern("yyyy-MM-d"));
     }
-
-//    @InitBinder("dateBinder")
-//    public void dateBinder(WebDataBinder binder) {
-//        binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true, 10));
-//    }
 }

@@ -7,6 +7,7 @@ import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.SQLDelete;
 import org.sce.lms.core.model.ModifiableEntity;
 import org.sce.lms.core.model.person.Person;
 

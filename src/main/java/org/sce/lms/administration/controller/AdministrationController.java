@@ -4,6 +4,7 @@ import org.sce.lms.core.controller.GlobalController;
 import org.sce.lms.core.dao.CoreDao;
 import org.sce.lms.core.model.person.Gender;
 import org.sce.lms.core.model.person.Municipality;
+import org.sce.lms.core.model.user.model.Authority;
 import org.sce.lms.core.model.user.model.User;
 import org.sce.lms.core.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,21 +26,18 @@ public class AdministrationController extends GlobalController {
     private UserService userService;
 
     @GetMapping("/profile/user/{userid}/get.do")
-    private String index(Model model, @PathVariable long userid){
+    public String index(Model model, @PathVariable long userid){
         return "screens/views/administration/profile";
     }
 
     @GetMapping("/user/management/get.do")
-    private String userManagement(Model model){
+    public String userManagement(Model model){
         model.addAttribute("user", new User());
-        model.addAttribute("userList", coreDao.getAllObjects(User.class));
-        model.addAttribute("municipalityList", coreDao.getAllObjects(Municipality.class));
-        model.addAttribute("genderList", coreDao.getAllObjects(Gender.class));
-        return "screens/views/administration/usermanagement";
+        return setAdminModels(model);
     }
 
     @PostMapping("/user/management/save.do")
-    private String saveUser(@Valid @ModelAttribute("user") User user, Model model, HttpServletRequest request, BindingResult result){
+    public String saveUser(@Valid @ModelAttribute("user") User user, Model model, HttpServletRequest request, BindingResult result){
         User dbUser = (User) coreDao.getObjectByCriteria(User.class, "username", user.getUsername());
         user.getPerson().setDateOfBirth(convertToLocalDate(request.getParameter("person.dateOfBirth")));
 
@@ -51,12 +49,24 @@ public class AdministrationController extends GlobalController {
         return "redirect:/admin/user/management/get.do";
     }
 
-    @GetMapping("/user/{id}/management/edit.do")
-    private String getUser(@PathVariable("userid") long id, Model model) {
-        model.addAttribute("user", coreDao.getObjectById(User.class, id));
+    @GetMapping("/user/{userid}/management/edit.do")
+    public String getUser(@PathVariable long userid, Model model) {
+        model.addAttribute("user", coreDao.getObjectById(User.class, userid));
+        return setAdminModels(model);
+    }
+
+    @RequestMapping("/user/{userid}/management/delete.do")
+    public String deleteUser(@PathVariable long userid, Model model, @ModelAttribute User user) throws NoSuchFieldException, IllegalAccessException {
+
+//        coreDao.softDeleteObject(User.class, userid, "active");
+        return "redirect:/admin/user/management/get.do";
+    }
+
+    public String setAdminModels(Model model) {
         model.addAttribute("userList", coreDao.getAllObjects(User.class));
         model.addAttribute("municipalityList", coreDao.getAllObjects(Municipality.class));
         model.addAttribute("genderList", coreDao.getAllObjects(Gender.class));
+        model.addAttribute("rolesList", coreDao.getAllObjects(Authority.class));
         return "screens/views/administration/usermanagement";
     }
 }
