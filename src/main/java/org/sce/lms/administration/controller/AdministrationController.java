@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,22 +34,21 @@ public class AdministrationController extends GlobalController {
     @GetMapping("/user/management/get.do")
     public String userManagement(Model model){
         model.addAttribute("user", new User());
-        model.addAttribute("userList", coreDao.getAllObjects(User.class));
-        model.addAttribute("municipalityList", coreDao.getAllObjects(Municipality.class));
-        model.addAttribute("genderList", coreDao.getAllObjects(Gender.class));
-        model.addAttribute("rolesList", coreDao.getAllObjects(Authority.class));
-        return "screens/views/administration/usermanagement";
-//        return setAdminModels(model);
+        return setAdminModels(model);
     }
 
     @PostMapping("/user/management/save.do")
-    public String saveUser(@Valid @ModelAttribute("user") User user, Model model, HttpServletRequest request, BindingResult result){
-        User dbUser = (User) coreDao.getObjectByCriteria(User.class, "username", user.getUsername());
-        user.getPerson().setDateOfBirth(convertToLocalDate(request.getParameter("person.dateOfBirth")));
+    public String saveUser(@ModelAttribute("user") @Valid User user, Model model, HttpServletRequest request, BindingResult result){
+        if(result.hasErrors()){
+            return "screens/views/administration/usermanagement";
+        } else {
+            User dbUser = (User) coreDao.getObjectByCriteria(User.class, "username", user.getUsername());
+            user.getPerson().setDateOfBirth(convertToLocalDate(request.getParameter("person.dateOfBirth")));
 
-        if(user.getPassword().equals(request.getParameter("confirmPassword"))){
-            if(!user.equals(dbUser)){
-                userService.save(user);
+            if (user.getPassword().equals(request.getParameter("confirmPassword"))) {
+                if (!user.equals(dbUser)) {
+                    userService.save(user);
+                }
             }
         }
         return "redirect:/admin/user/management/get.do";

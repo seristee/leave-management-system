@@ -13,7 +13,8 @@
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
-                <form th:action="@{/login.do}" method="post" autocomplete="off">
+                <form th:action="@{/login.do}" method="post" autocomplete="off" th:autocomplete="off">
+                    <span th:text="${param.error}"></span>
                     <div th:if="${param.error}">
                         <p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
                     </div>
@@ -21,8 +22,9 @@
                     <div th:if="${param.logout}">
                         <p class="text-warning">You have been logged out.</p>
                     </div>
+
                     <div class="input-group mb-3">
-                        <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
+                        <input type="text" name="username" class="form-control" placeholder="Username" autofocus>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -30,7 +32,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" name="password" class="form-control" placeholder="Password" required>
+                        <input type="password" name="password" class="form-control" placeholder="Password">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
