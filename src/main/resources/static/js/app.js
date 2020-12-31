@@ -29,7 +29,9 @@ $(function () {
         "paging":   true,
         "ordering": true,
         "info":     true,
+        renderer: { "header": "bootstrap" }
     });
+
     $('.datePickerPast').datetimepicker({
         format: 'YYYY-MM-DD',
         maxDate: new Date(),

@@ -9,7 +9,7 @@ public class UserDaoImpl extends CoreAbastractDao implements UserDao {
 
     @Override
     public void save(User user) {
-        persist(user);
+        saveOrUpdateEntity(user);
     }
 
     @Override

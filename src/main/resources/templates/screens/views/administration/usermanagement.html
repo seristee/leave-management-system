@@ -181,11 +181,10 @@
                                 <table class="table table-condensed table-hover table-striped table-bordered dataTable" style="width:100%">
                                     <thead class="text-uppercase">
                                         <tr>
-                                            <th>id</th>
-                                            <th>FirstName</th>
-                                            <th>LastName</th>
-                                            <th>Username</th>
-                                            <th>Roles</th>
+                                            <th th:text="#{label.id}"></th>
+                                            <th th:text="#{label.first.name}"></th>
+                                            <th th:text="#{label.last.name}"></th>
+                                            <th th:text="#{label.username}"></th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -195,7 +194,6 @@
                                             <td th:text="${user.person.firstName}"></td>
                                             <td th:text="${user.person.lastName}"></td>
                                             <td th:text="${user.username}"></td>
-                                            <td th:text="${user.userRoles}"></td>
                                             <td>
                                                 <a th:href="@{/admin/user/{userid}/management/edit.do (userid=${user.id})}" th:title="#{label.edit}"><i class="far fa-edit"></i></a>
 <!--                                                <a th:href="@{/admin/user/{userid}/management/delete.do (userid=1)}" th:title="#{label.delete}"><i class="far fa-trash-alt"></i></a>-->

@@ -28,8 +28,8 @@ import java.util.List;
 @SQLDelete(sql = "UPDATE lms_users SET active=false WHERE user_id=?")
 public class User extends ModifiableEntity {
     @Column(name="username", unique = true, nullable = false)
-    @NotNull(message = "Username is required")
-    @NotEmpty(message = "Username cannot be empty")
+    @NotNull(message = "{validation.username.required}")
+    @NotEmpty(message = "{validation.username.notEmpty}")
     private String username;
 
     @Column(name="password", nullable = false)
@@ -48,7 +48,7 @@ public class User extends ModifiableEntity {
 
     @Column(name = "account_locked")
     private boolean accountLocked;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @Fetch(FetchMode.SELECT)
     @JoinTable(name = "acsis_user_authorities",joinColumns = {
             @JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "authority_id")}, foreignKey = @ForeignKey(name="FK_USER_USER_AUTHORITY"))
@@ -56,7 +56,7 @@ public class User extends ModifiableEntity {
     @OneToOne
     @JoinColumn(name="account_type_id", foreignKey=@ForeignKey(name="FK_ACCOUNT_INFO_ACCOUNT_TYPE"))
     private AccountType accountType;
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne(cascade=CascadeType.MERGE)
     @JoinColumn(name="person_id", foreignKey=@ForeignKey(name="FK_USER_PERSON"))
     private Person person;
 }
