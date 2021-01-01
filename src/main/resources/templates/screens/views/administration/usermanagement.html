@@ -161,7 +161,7 @@
                                                  th:each="role, status : ${rolesList}" id="role">
                                                 <input type="checkbox" class="form-control" th:id="'rols_' + ${status.index}"
                                                        th:value="${role.id}"
-                                                       th:field="*{userRoles[__${status.index}__].id}">
+                                                       th:field="*{userRoles}">
                                                 <label th:for="'rols_' + ${status.index}" th:text="${role.constant}"></label>
                                             </div>
                                         </div>

@@ -17,6 +17,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @RequestMapping("/admin")
 @Controller
@@ -39,18 +41,29 @@ public class AdministrationController extends GlobalController {
     }
 
     @PostMapping("/user/management/save.do")
-    public String saveUser(@Valid @ModelAttribute("user") User user, Model model, HttpServletRequest request, BindingResult result, RedirectAttributes ra){
+    public String saveUser(@ModelAttribute("user") User user, Model model, HttpServletRequest request, BindingResult result){
         if(result.hasErrors()){
             return "screens/views/administration/usermanagement";
         } else {
             User dbUser = (User) coreDao.getObjectByCriteria(User.class, "username", user.getUsername());
             user.getPerson().setDateOfBirth(convertToLocalDate(request.getParameter("person.dateOfBirth")));
+            List<Authority> authorityList = new ArrayList<Authority>();
+            String[] roles = request.getParameterValues("userRoles");
+            for (int i = 0; i < roles.length; i++) {
+                Authority authority = (Authority) coreDao.getObjectById(Authority.class, Long.parseLong(roles[i]));
+                authorityList.add(authority);
+            }
+
+            user.setUserRoles(authorityList);
 
             if (user.getPassword().equals(request.getParameter("confirmPassword"))) {
                 if (!user.equals(dbUser)) {
-                    userService.save(user);
+
+//                    userService.save(user);
                 }
             }
+
+
         }
         return "redirect:/admin/user/management/get.do";
     }
