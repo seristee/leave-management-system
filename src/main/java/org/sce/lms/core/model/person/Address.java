@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 
 import lombok.Data;
@@ -24,6 +25,7 @@ import org.sce.lms.core.model.ActivatableEntity;
 @AttributeOverride(name = "id", column = @Column(name = "address_id"))
 public class Address extends ActivatableEntity {
     @Column(name = "address_line_1")
+    @NotEmpty(message = "{validation.addressLine1.required}")
     private String addressLine1;
 
     @Column(name = "address_line_2")

@@ -1,6 +1,7 @@
 package org.sce.lms.core.model;
 
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotEmpty;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -13,5 +14,6 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 public class ActivatableNamedEntity extends ActivatableEntity{
+    @NotEmpty(message = "{validation.name.required}")
     private String name;
 }

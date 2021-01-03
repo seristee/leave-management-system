@@ -3,6 +3,7 @@ package org.sce.lms.core.model.person;
 import java.time.LocalDate;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -27,6 +28,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Person extends ActivatableEntity {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "contact_information_id", foreignKey = @ForeignKey(name="FK_PERSON_CONTACT_INFORMATION"))
+    @Valid
     private ContactInformation contactInformation;
 
     @Column(name = "social_security_number")
@@ -34,27 +36,27 @@ public class Person extends ActivatableEntity {
 
     @Column(name = "date_of_birth")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @NotEmpty(message = "Date of birth is required")
     @Past(message = "Birth date should be less than current date!!")
 //    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateOfBirth;
 
     @OneToOne
     @JoinColumn(name = "gender_id", foreignKey = @ForeignKey(name="FK_PERSON_GENDER"))
+    @Valid
     private Gender gender;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", foreignKey = @ForeignKey(name = "FK_PERSON_ADDRESS"))
     private Address address;
 
-    @NotEmpty(message = "LastName is required")
+    @NotEmpty(message = "{validation.lastName.required}")
     @Column(name = "last_name")
     private String lastName;
 
     @Column(name = "middle_name")
     private String middleName;
 
-    @NotEmpty(message = "FirstName is required")
+    @NotEmpty(message = "{validation.firstName.required}")
     @Column(name = "first_name")
     private String firstName;
 
@@ -70,4 +72,5 @@ public class Person extends ActivatableEntity {
     public void setFullName(String fullName) {
         this.fullName.concat(" ").concat(this.lastName);
     }
+
 }

@@ -11,6 +11,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Data
@@ -24,7 +25,8 @@ public class ContactInformation extends ActivatableEntity {
     private String phoneNumber;
     @Column(name = "cell_phone_number")
     private String otherContactNumber;
-    @Email(message = "Please enter a valid email address")
+    @Email(message = "{validation.email}")
+    @NotEmpty(message = "{validation.email.required}")
     @Column(name = "email_address", unique = true)
     private String emailAddress;
 }

@@ -25,7 +25,7 @@
                                         <div class="col-md-3">
                                             <label for="firstName" th:text="#{label.first.name}"></label>
                                             <input type="text" class="form-control form-control-sm" th:field="*{person.firstName}" id="firstName">
-                                            <span th:if="${#fields.hasErrors('person.firstName')}" class="text-danger font-italic" th:errors="*{firstName}">FirstName error</span>
+                                            <span th:if="${#fields.hasErrors('person.firstName')}" class="text-danger font-italic" th:errors="*{person.firstName}">FirstName error</span>
                                         </div>
                                         <div class="col-md-3">
                                             <label for="middleName" th:text="#{label.middle.name}"></label>
@@ -34,7 +34,7 @@
                                         <div class="col-md-3">
                                             <label for="lastName" th:text="#{label.last.name}"></label>
                                             <input type="text" class="form-control form-control-sm" th:field="*{person.lastName}" id="lastName">
-                                            <span th:if="${#fields.hasErrors('person.lastName')}" class="text-danger font-italic" th:errors="*{lastName}">LastName error</span>
+                                            <span th:if="${#fields.hasErrors('person.lastName')}" class="text-danger font-italic" th:errors="*{person.lastName}">LastName error</span>
                                         </div>
                                         <div class="col-md-3">
                                             <label for="alias" th:text="#{label.alias}"></label>
@@ -47,10 +47,12 @@
                                         <div class="col-md-4">
                                             <label for="gender" th:text="#{label.gender}"></label>
                                             <select th:field="*{person.gender.id}" class="form-control form-control-sm select2" id="gender">
+                                                <option value=""></option>
                                                 <option th:each="gender : ${genderList}"
                                                         th:value="${gender.id}"
                                                         th:text="${gender.constant}">Please select an option</option>
                                             </select>
+                                            <span th:if="${#fields.hasErrors('person.gender')}" class="text-danger font-italic" th:errors="*{person.gender}">Gender error</span>
                                         </div>
                                         <div class="col-md-4">
                                             <label for="ssn" th:text="#{label.ssn}"></label>
@@ -67,6 +69,7 @@
                                         <div class="col-md-3">
                                             <label for="addressLine1" th:text="#{label.addressline1}"></label>
                                             <input type="text" class="form-control form-control-sm" th:field="*{person.address.addressLine1}" id="addressLine1">
+                                            <span th:if="${#fields.hasErrors('person.address.addressLine1')}" class="text-danger font-italic" th:errors="*{person.address.addressLine1}">Address error</span>
                                         </div>
                                         <div class="col-md-3">
                                             <label for="addressLine2" th:text="#{label.addressline2}"></label>
@@ -99,6 +102,7 @@
                                         <div class="col-md-4">
                                             <label for="emailAddress" th:text="#{label.email}"></label>
                                             <input type="email" class="form-control form-control-sm" th:field="*{person.contactInformation.emailAddress}" id="emailAddress">
+                                            <span th:if="${#fields.hasErrors('person.contactInformation.emailAddress')}" class="text-danger font-italic" th:errors="*{person.contactInformation.emailAddress}">Email Address error</span>
                                         </div>
                                     </div>
                                 </div>

@@ -12,8 +12,8 @@ import org.sce.lms.core.model.ModifiableEntity;
 import org.sce.lms.core.model.person.Person;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +32,7 @@ public class User extends ModifiableEntity {
     private String username;
 
     @Column(name="password", nullable = false)
-    @NotEmpty(message = "Password is required")
+    @NotEmpty(message = "{validation.password.required}")
     private String password;
 
     @Column(name = "disabled")
@@ -56,5 +56,6 @@ public class User extends ModifiableEntity {
     private AccountType accountType;
     @OneToOne(cascade=CascadeType.MERGE)
     @JoinColumn(name="person_id", foreignKey=@ForeignKey(name="FK_USER_PERSON"))
+    @Valid
     private Person person;
 }
