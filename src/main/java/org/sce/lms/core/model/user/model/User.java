@@ -28,13 +28,11 @@ import java.util.List;
 @SQLDelete(sql = "UPDATE lms_users SET active=false WHERE user_id=?")
 public class User extends ModifiableEntity {
     @Column(name="username", unique = true, nullable = false)
-    @NotNull(message = "{validation.username.required}")
-    @NotEmpty(message = "{validation.username.notEmpty}")
+    @NotEmpty(message = "{validation.username.required}")
     private String username;
 
     @Column(name="password", nullable = false)
-    @NotNull(message="Password is required")
-    @NotEmpty(message = "Password cannot be empty")
+    @NotEmpty(message = "Password is required")
     private String password;
 
     @Column(name = "disabled")

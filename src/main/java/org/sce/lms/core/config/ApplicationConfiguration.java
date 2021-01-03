@@ -21,5 +21,4 @@ public class ApplicationConfiguration {
         LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
         bean.setValidationMessageSource(messageSource());
         return bean;
-    }
-}
+    }}

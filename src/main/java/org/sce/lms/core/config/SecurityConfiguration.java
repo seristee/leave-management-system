@@ -78,11 +78,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).maximumSessions(1);
         http.logout()
                 .logoutUrl("/logout.do")
-                .logoutSuccessHandler(logoutSuccessHandler());
-//                .invalidateHttpSession(true)
-//                .clearAuthentication(true)
-//                .deleteCookies("JSESSIONID");
-//                .logoutSuccessUrl("/login");
+                .logoutSuccessHandler(logoutSuccessHandler())
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .deleteCookies("JSESSIONID")
+                .logoutSuccessUrl("/login");
         http.rememberMe().rememberMeParameter("remember-me")
                 .rememberMeCookieName("REMEMBER-ME-COOKIE")
                 .tokenRepository(persistentTokenRepository())
@@ -127,10 +127,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-
         CorsConfiguration corsConfiguration = new CorsConfiguration().applyPermitDefaultValues();
         source.registerCorsConfiguration("/**", corsConfiguration);
-
         return source;
     }
 

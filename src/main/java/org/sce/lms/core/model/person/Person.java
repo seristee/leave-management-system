@@ -3,6 +3,7 @@ package org.sce.lms.core.model.person;
 import java.time.LocalDate;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
@@ -33,7 +34,7 @@ public class Person extends ActivatableEntity {
 
     @Column(name = "date_of_birth")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @NotNull(message = "Please enter birth date")
+    @NotEmpty(message = "Date of birth is required")
     @Past(message = "Birth date should be less than current date!!")
 //    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateOfBirth;
@@ -46,14 +47,14 @@ public class Person extends ActivatableEntity {
     @JoinColumn(name = "address_id", foreignKey = @ForeignKey(name = "FK_PERSON_ADDRESS"))
     private Address address;
 
-    @NotNull(message = "LastName is required")
+    @NotEmpty(message = "LastName is required")
     @Column(name = "last_name")
     private String lastName;
 
     @Column(name = "middle_name")
     private String middleName;
 
-    @NotNull(message = "FirstName is required")
+    @NotEmpty(message = "FirstName is required")
     @Column(name = "first_name")
     private String firstName;
 
