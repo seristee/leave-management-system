@@ -26,7 +26,7 @@ public class ContactInformation extends ActivatableEntity {
     @Column(name = "cell_phone_number")
     private String otherContactNumber;
     @Email(message = "{validation.email}")
-    @NotEmpty(message = "{validation.email.required}")
+    @NotEmpty(message = "{validation.field.required}")
     @Column(name = "email_address", unique = true)
     private String emailAddress;
 }

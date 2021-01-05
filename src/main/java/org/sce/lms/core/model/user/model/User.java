@@ -13,9 +13,11 @@ import org.sce.lms.core.model.person.Person;
 
 import javax.persistence.*;
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Entity
 @Data
@@ -27,13 +29,17 @@ import java.util.List;
 @AttributeOverride(name = "id", column = @Column(name = "user_id"))
 @SQLDelete(sql = "UPDATE lms_users SET active=false WHERE user_id=?")
 public class User extends ModifiableEntity {
-    @Column(name="username", unique = true, nullable = false)
-    @NotEmpty(message = "{validation.username.required}")
+    @Column(name = "username", unique = true, nullable = false)
+    @NotEmpty(message = "{validation.field.required}")
     private String username;
 
-    @Column(name="password", nullable = false)
-    @NotEmpty(message = "{validation.password.required}")
+    @Column(name = "password", nullable = false)
+    @NotEmpty(message = "{validation.field.required}")
     private String password;
+
+    @Transient
+    @NotEmpty(message = "{validation.field.required}")
+    private String confirmPassword;
 
     @Column(name = "disabled")
     private boolean disabled;
@@ -48,14 +54,14 @@ public class User extends ModifiableEntity {
     private boolean accountLocked;
     @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @Fetch(FetchMode.SELECT)
-    @JoinTable(name = "acsis_user_authorities",joinColumns = {
-            @JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "authority_id")}, foreignKey = @ForeignKey(name="FK_USER_USER_AUTHORITY"))
-    private List<Authority> userRoles= new ArrayList<>();
+    @JoinTable(name = "acsis_user_authorities", joinColumns = {
+            @JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "authority_id")}, foreignKey = @ForeignKey(name = "FK_USER_USER_AUTHORITY"))
+    private List<Authority> userRoles = new ArrayList<>();
     @OneToOne
-    @JoinColumn(name="account_type_id", foreignKey=@ForeignKey(name="FK_ACCOUNT_INFO_ACCOUNT_TYPE"))
+    @JoinColumn(name = "account_type_id", foreignKey = @ForeignKey(name = "FK_ACCOUNT_INFO_ACCOUNT_TYPE"))
     private AccountType accountType;
-    @OneToOne(cascade=CascadeType.MERGE)
-    @JoinColumn(name="person_id", foreignKey=@ForeignKey(name="FK_USER_PERSON"))
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "person_id", foreignKey = @ForeignKey(name = "FK_USER_PERSON"))
     @Valid
     private Person person;
 }

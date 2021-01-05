@@ -25,7 +25,7 @@ import org.sce.lms.core.model.ActivatableEntity;
 @AttributeOverride(name = "id", column = @Column(name = "address_id"))
 public class Address extends ActivatableEntity {
     @Column(name = "address_line_1")
-    @NotEmpty(message = "{validation.addressLine1.required}")
+    @NotEmpty(message = "{validation.field.required}")
     private String addressLine1;
 
     @Column(name = "address_line_2")

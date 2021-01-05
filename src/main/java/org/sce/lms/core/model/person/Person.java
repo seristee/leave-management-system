@@ -31,6 +31,7 @@ public class Person extends ActivatableEntity {
     @Valid
     private ContactInformation contactInformation;
 
+    @NotEmpty(message = "{validation.field.required}")
     @Column(name = "social_security_number")
     private String socialSecurityNumber;
 
@@ -47,16 +48,17 @@ public class Person extends ActivatableEntity {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", foreignKey = @ForeignKey(name = "FK_PERSON_ADDRESS"))
+    @Valid
     private Address address;
 
-    @NotEmpty(message = "{validation.lastName.required}")
+    @NotEmpty(message = "{validation.field.required}")
     @Column(name = "last_name")
     private String lastName;
 
     @Column(name = "middle_name")
     private String middleName;
 
-    @NotEmpty(message = "{validation.firstName.required}")
+    @NotEmpty(message = "{validation.field.required}")
     @Column(name = "first_name")
     private String firstName;
 
