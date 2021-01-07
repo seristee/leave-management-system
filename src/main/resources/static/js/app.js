@@ -1,19 +1,19 @@
 $(function () {
 
-    var url = window.location;
+    // var url = window.location;
     // for single sidebar menu
-    $('ul.nav-sidebar a').filter(function () {
-        return this.href == url;
-    }).addClass('active');
+    // $('ul.nav-sidebar a').filter(function () {
+    //     return this.href == url;
+    // }).addClass('active');
         //.css('color', 'white');
-
+    //
     // for sidebar menu and treeview
-    $('ul.nav-treeview a').filter(function () {
-        return this.href == url;
-    }).parentsUntil(".nav-sidebar > .nav-treeview")
-        .css({'display': 'block'})
-        .addClass('menu-open').prev('a')
-        .addClass('active');
+    // $('ul.nav-treeview a').filter(function () {
+    //     return this.href == url;
+    // }).parentsUntil(".nav-sidebar > .nav-treeview")
+    //     .css({'display': 'block'})
+    //     .addClass('menu-open').prev('a')
+    //     .addClass('active');
 
     //password reset
 
@@ -26,11 +26,11 @@ $(function () {
 
     //datatables
     $('.dataTable').DataTable({
+        renderer: "bootstrap",
         responsive: true,
-        "paging":   true,
-        "ordering": true,
-        "info":     true,
-        renderer: { "header": "bootstrap" }
+        paging:   true,
+        ordering: true,
+        info:     false,
     });
 
     $('.datePickerPast').datetimepicker({

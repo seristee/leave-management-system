@@ -14,6 +14,6 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 public class ActivatableNamedEntity extends ActivatableEntity{
-    @NotEmpty(message = "{validation.name.required}")
+    @NotEmpty(message = "{validation.field.required}")
     private String name;
 }

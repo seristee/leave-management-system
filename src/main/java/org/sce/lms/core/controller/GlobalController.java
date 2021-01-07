@@ -2,34 +2,37 @@ package org.sce.lms.core.controller;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.sce.lms.core.dao.CoreDao;
+import org.sce.lms.core.model.user.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
-import java.text.SimpleDateFormat;
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 @Configuration
 @PropertySource(value = { "classpath:application.properties" })
+@Transactional
+@SessionAttributes("currentUser")
 public class GlobalController {
     protected Log logger = LogFactory.getLog(this.getClass());
+
+    @Autowired
+    private CoreDao coreDao;
 
 //    @Value("${build.version}")
     protected String buildVersion;
 
-    @ModelAttribute("currrentUser")
-    public String currentUser(){
-        return getPrincipal();
+    @ModelAttribute("currentUser")
+    public User currentUser(){
+        User user = (User) coreDao.getObjectByCriteria(User.class, "username", getPrincipal());
+        return user;
     }
 
     protected String getPrincipal() {
