@@ -56,8 +56,8 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <label for="gender" th:text="#{label.gender}"></label>
-                                            <select th:field="*{person.gender.id}"
-                                                    class="form-control form-control-sm select2" id="gender">
+                                            <select th:field="*{person.gender.id}" class="form-control form-control-sm select2" id="gender">
+                                                <option value=""></option>
                                                 <option th:each="gender : ${genderList}"
                                                         th:value="${gender.id}"
                                                         th:text="${gender.constant}">Please select an option
@@ -101,6 +101,7 @@
                                             <label for="municipality" th:text="#{label.municipality}"></label>
                                             <select th:field="*{person.address.municipality.id}"
                                                     class="form-control form-control-sm select2" id="municipality">
+                                                <option value=""></option>
                                                 <option th:each="municipality : ${municipalityList}"
                                                         th:value="${municipality.id}"
                                                         th:text="${municipality.constant}">Please select an option

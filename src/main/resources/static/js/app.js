@@ -23,6 +23,11 @@ $(function () {
 
     //select2
     $('.select2').select2({
+        placeholder: {
+            text: "Select an Option",
+            id: '-1'
+        },
+        allowClear: false
     });
 
 

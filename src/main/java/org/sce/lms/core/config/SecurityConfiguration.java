@@ -139,4 +139,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public HttpSessionEventPublisher httpSessionEventPublisher() {
         return new HttpSessionEventPublisher();
     }
+
+
 }

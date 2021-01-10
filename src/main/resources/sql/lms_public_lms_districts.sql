@@ -1,0 +1,11 @@
+INSERT INTO public.lms_districts (district_id, active, name, constant) VALUES (1, true, 'Gros Islet', 'GROS ISLET');
+INSERT INTO public.lms_districts (district_id, active, name, constant) VALUES (2, true, 'Castries', 'CASTRIES');
+INSERT INTO public.lms_districts (district_id, active, name, constant) VALUES (3, true, 'Dennery', 'DENNERY');
+INSERT INTO public.lms_districts (district_id, active, name, constant) VALUES (4, true, 'praslin', 'PRASLIN');
+INSERT INTO public.lms_districts (district_id, active, name, constant) VALUES (5, true, 'Micoud', 'MICOUD');
+INSERT INTO public.lms_districts (district_id, active, name, constant) VALUES (6, true, 'Vieux Fort', 'VIEUX FORT');
+INSERT INTO public.lms_districts (district_id, active, name, constant) VALUES (7, true, 'laborie', 'LABORIE');
+INSERT INTO public.lms_districts (district_id, active, name, constant) VALUES (8, true, 'choiseul', 'CHOISEUL');
+INSERT INTO public.lms_districts (district_id, active, name, constant) VALUES (9, true, 'Soufriere', 'SOUFRIERE');
+INSERT INTO public.lms_districts (district_id, active, name, constant) VALUES (10, true, 'canaries', 'CANARIES');
+INSERT INTO public.lms_districts (district_id, active, name, constant) VALUES (11, true, 'anse la raye', 'ANSE LA RAYE');

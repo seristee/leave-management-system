@@ -1,0 +1,11 @@
+INSERT INTO public.lms_authorities (authority_id, active, name, constant) VALUES (1, true, 'Admin', 'ADMIN');
+INSERT INTO public.lms_authorities (authority_id, active, name, constant) VALUES (2, true, 'User', 'USER');
+INSERT INTO public.lms_authorities (authority_id, active, name, constant) VALUES (3, true, 'Guest', 'GUEST');
+INSERT INTO public.lms_authorities (authority_id, active, name, constant) VALUES (4, true, 'User.Delete', 'USER.DELETE');
+INSERT INTO public.lms_authorities (authority_id, active, name, constant) VALUES (5, true, 'User.Create', 'USER.CREATE');
+INSERT INTO public.lms_authorities (authority_id, active, name, constant) VALUES (6, true, 'User.Update', 'USER.UPDATE');
+INSERT INTO public.lms_authorities (authority_id, active, name, constant) VALUES (7, true, 'User.Edit', 'USER.EDIT');
+INSERT INTO public.lms_authorities (authority_id, active, name, constant) VALUES (8, true, 'Guest.Create', 'GUEST.CREATE');
+INSERT INTO public.lms_authorities (authority_id, active, name, constant) VALUES (9, true, 'Guest.Delete', 'GUEST.DELETE');
+INSERT INTO public.lms_authorities (authority_id, active, name, constant) VALUES (10, true, 'Guest.Update', 'GUEST.UPDATE');
+INSERT INTO public.lms_authorities (authority_id, active, name, constant) VALUES (11, true, 'Guest.Edit', 'GUEST.EDIT');

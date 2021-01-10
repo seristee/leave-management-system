@@ -1,5 +1,11 @@
 package org.sce.lms.administration.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
 import org.sce.lms.core.controller.GlobalController;
 import org.sce.lms.core.dao.CoreDao;
 import org.sce.lms.core.model.person.Gender;
@@ -7,19 +13,15 @@ import org.sce.lms.core.model.person.Municipality;
 import org.sce.lms.core.model.user.model.Authority;
 import org.sce.lms.core.model.user.model.User;
 import org.sce.lms.core.services.UserService;
-import org.springframework.beans.TypeMismatchException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @RequestMapping("/admin")
@@ -42,9 +44,8 @@ public class AdministrationController extends GlobalController {
         return setAdminModels(model);
     }
 
-    @ExceptionHandler(TypeMismatchException.class)
     @PostMapping("/user/management/save.do")
-    public String saveUser(HttpServletRequest request,@ModelAttribute @Valid User user, BindingResult result,Model model){
+    public String saveUser(HttpServletRequest request,@ModelAttribute("user") @Valid User user, BindingResult result,Model model){
         List<Authority> authorityList = new ArrayList<Authority>();
         String[] roles = request.getParameterValues("userRoles");
         if(roles.length != 0){
@@ -56,22 +57,20 @@ public class AdministrationController extends GlobalController {
 
         if(result.hasErrors()){
             System.out.println(result);
-//            return "screens/views/administration/usermanagement";
             return setAdminModels(model);
         } else {
             User dbUser = (User) coreDao.getObjectByCriteria(User.class, "username", user.getUsername());
             user.getPerson().setDateOfBirth(convertToLocalDate(request.getParameter("person.dateOfBirth")));
-
             user.setUserRoles(authorityList);
             if (user.getPassword().equals(user.getConfirmPassword())) {
                 if (!user.equals(dbUser)) {
                     userService.save(user);
                 }
-            } else {
+            }
+            else {
                 System.out.println("passwords do not match");
             }
         }
-//        return "redirect:/admin/user/management/get.do";
         return setAdminModels(model);
     }
 
