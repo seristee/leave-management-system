@@ -35,7 +35,7 @@ public class AdministrationController extends GlobalController {
 
     @GetMapping("/profile/user/{userid}/get.do")
     public String index(Model model, @PathVariable long userid){
-        return "screens/views/administration/profile";
+        return "screens/views/administration/userprofile";
     }
 
     @GetMapping("/user/management/get.do")
