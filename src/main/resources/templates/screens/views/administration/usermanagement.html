@@ -15,8 +15,7 @@
                             <h3 class="card-title" th:text="#{label.user.registration.form}"></h3>
                         </div>
 
-                        <form role="form" action="#" th:action="@{/admin/user/management/save.do}" th:object="${user}"
-                              th:method="post" th:autocomplete="false" autocomplete="false">
+                        <form role="form" action="#" th:action="@{/admin/user/management/save.do}" th:object="${user}" th:method="post" th:autocomplete="false" autocomplete="false">
 
                             <input type="hidden" id="id" th:field="*{id}">
                             <input type="hidden" id="person.id" th:field="*{person.id}">
@@ -179,6 +178,7 @@
                                         <div class="col-md-12">
                                             <label for="" th:text="#{label.account.information}"></label>
                                         </div>
+
                                         <div class="col-md-3">
                                             <div class="icheck-primary">
                                                 <input type="checkbox" id="locked" th:field="*{accountLocked}">
@@ -220,11 +220,15 @@
                                                        th:field="*{userRoles}">
                                                 <label th:for="'rols_' + ${status.index}"
                                                        th:text="${role.constant}"></label>
+                                                <!--
+                                                 th:field="*{userRoles[__${status.index}__].id}"
+                                                 -->
                                             </div>
                                         </div>
                                     </div>
                                 </div> <!-- end form group -->
                             </div>
+
                             <div class="card-footer">
                                 <button class="btn btn-primary" type="submit">Submit</button>
                             </div>

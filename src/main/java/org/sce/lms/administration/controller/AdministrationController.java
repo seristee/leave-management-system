@@ -52,7 +52,6 @@ public class AdministrationController extends GlobalController {
         }
 
         if(result.hasErrors()){
-            System.out.println(result);
 //            return "screens/views/administration/usermanagement";
             return setAdminModels(model);
         } else {
@@ -60,10 +59,12 @@ public class AdministrationController extends GlobalController {
             user.getPerson().setDateOfBirth(convertToLocalDate(request.getParameter("person.dateOfBirth")));
 
             user.setUserRoles(authorityList);
-            if (user.getPassword().equals(request.getParameter("confirmPassword"))) {
+            if (user.getPassword().equals(user.getConfirmPassword())) {
                 if (!user.equals(dbUser)) {
                     userService.save(user);
                 }
+            } else {
+                System.out.println("passwords do not match");
             }
         }
 //        return "redirect:/admin/user/management/get.do";
