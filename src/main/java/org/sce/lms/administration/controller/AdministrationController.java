@@ -7,6 +7,7 @@ import org.sce.lms.core.model.person.Municipality;
 import org.sce.lms.core.model.user.model.Authority;
 import org.sce.lms.core.model.user.model.User;
 import org.sce.lms.core.services.UserService;
+import org.springframework.beans.TypeMismatchException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+
 
 @RequestMapping("/admin")
 @Controller
@@ -40,6 +42,7 @@ public class AdministrationController extends GlobalController {
         return setAdminModels(model);
     }
 
+    @ExceptionHandler(TypeMismatchException.class)
     @PostMapping("/user/management/save.do")
     public String saveUser(HttpServletRequest request,@ModelAttribute @Valid User user, BindingResult result,Model model){
         List<Authority> authorityList = new ArrayList<Authority>();
@@ -52,6 +55,7 @@ public class AdministrationController extends GlobalController {
         }
 
         if(result.hasErrors()){
+            System.out.println(result);
 //            return "screens/views/administration/usermanagement";
             return setAdminModels(model);
         } else {

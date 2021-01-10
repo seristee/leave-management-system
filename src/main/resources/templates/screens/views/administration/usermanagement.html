@@ -63,8 +63,8 @@
                                                         th:text="${gender.constant}">Please select an option
                                                 </option>
                                             </select>
-                                            <span th:if="${#fields.hasErrors('person.gender')}"
-                                                  class="text-danger font-italic" th:errors="*{person.gender}">Gender error</span>
+                                            <span th:if="${#fields.hasErrors('person.gender.id')}"
+                                                  class="text-danger font-italic" th:errors="*{person.gender.id}">Gender error</span>
                                         </div>
                                         <div class="col-md-4">
                                             <label for="ssn" th:text="#{label.ssn}"></label>
@@ -224,6 +224,9 @@
                                                  th:field="*{userRoles[__${status.index}__].id}"
                                                  -->
                                             </div>
+                                            <span th:if="${#fields.hasErrors('userRoles')}"
+                                                  class="text-danger font-italic"
+                                                  th:errors="*{userRoles}">User Roles error</span>
                                         </div>
                                     </div>
                                 </div> <!-- end form group -->
