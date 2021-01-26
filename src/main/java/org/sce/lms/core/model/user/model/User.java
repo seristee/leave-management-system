@@ -58,7 +58,6 @@ public class User extends ModifiableEntity {
     @Fetch(FetchMode.SELECT)
     @JoinTable(name = "lms_user_authorities", joinColumns = {
             @JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "authority_id")}, foreignKey = @ForeignKey(name = "FK_USER_USER_AUTHORITY"))
-    @Convert(converter = StringToRolesConverter.class)
     private List<Authority> userRoles = new ArrayList<Authority>();
 
     @OneToOne(cascade = CascadeType.ALL)

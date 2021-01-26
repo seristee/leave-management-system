@@ -45,7 +45,7 @@ public class AdministrationController extends GlobalController {
     }
 
     @PostMapping("/user/management/save.do")
-    public String saveUser(HttpServletRequest request,@ModelAttribute("user") @Valid User user, BindingResult result,Model model){
+    public String saveUser(HttpServletRequest request,@ModelAttribute("user") User user, BindingResult result,Model model){
         List<Authority> authorityList = new ArrayList<Authority>();
         try {
             String[] roles = request.getParameterValues("userRoles");
@@ -60,20 +60,23 @@ public class AdministrationController extends GlobalController {
             ex.printStackTrace();
         }
 
-        if(result.hasErrors()){
-            return setAdminModels(model);
-        } else {
+        System.out.println(authorityList.size() + " => authorityList.size()");
+
+//        if(result.hasErrors() && authorityList.isEmpty()){
+//            return setAdminModels(model);
+//        } else {
             User dbUser = (User) coreDao.getObjectByCriteria(User.class, "username", user.getUsername());
             user.getPerson().setDateOfBirth(convertToLocalDate(request.getParameter("person.dateOfBirth")));
             if (user.getPassword().equals(user.getConfirmPassword())) {
                 if (!user.equals(dbUser)) {
-                    userService.save(user);
+//                    userService.save(user);
+                    user.toString();
                 }
             }
             else {
                 System.out.println("passwords do not match");
             }
-        }
+//        }
         return setAdminModels(model);
     }
 

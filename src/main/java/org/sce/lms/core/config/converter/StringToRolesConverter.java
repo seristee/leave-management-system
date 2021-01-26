@@ -35,6 +35,6 @@ public class StringToRolesConverter implements AttributeConverter<String[], List
     @Override
     public String[] convertToEntityAttribute(List<Authority> dbData) {
         logger.info("convert to list called");
-        return new String[0];
+        return dbData.toArray(new String[dbData.size()]);
     }
 }
