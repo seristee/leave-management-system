@@ -47,21 +47,24 @@ public class AdministrationController extends GlobalController {
     @PostMapping("/user/management/save.do")
     public String saveUser(HttpServletRequest request,@ModelAttribute("user") @Valid User user, BindingResult result,Model model){
         List<Authority> authorityList = new ArrayList<Authority>();
-        String[] roles = request.getParameterValues("userRoles");
-        if(roles.length != 0){
-            for (int i = 0; i < roles.length; i++) {
-                Authority authority = (Authority) coreDao.getObjectById(Authority.class, Long.parseLong(roles[i]));
-                authorityList.add(authority);
+        try {
+            String[] roles = request.getParameterValues("userRoles");
+            if(roles.length > 0){
+                for (int i = 0; i < roles.length; i++) {
+                    Authority authority = (Authority) coreDao.getObjectById(Authority.class, Long.parseLong(roles[i]));
+                    authorityList.add(authority);
+                }
+                user.setUserRoles(authorityList);
             }
+        } catch (Exception ex){
+            ex.printStackTrace();
         }
 
         if(result.hasErrors()){
-            System.out.println(result);
             return setAdminModels(model);
         } else {
             User dbUser = (User) coreDao.getObjectByCriteria(User.class, "username", user.getUsername());
             user.getPerson().setDateOfBirth(convertToLocalDate(request.getParameter("person.dateOfBirth")));
-            user.setUserRoles(authorityList);
             if (user.getPassword().equals(user.getConfirmPassword())) {
                 if (!user.equals(dbUser)) {
                     userService.save(user);

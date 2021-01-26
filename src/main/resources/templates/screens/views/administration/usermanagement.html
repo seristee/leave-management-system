@@ -14,9 +14,7 @@
                         <div class="card-header">
                             <h3 class="card-title" th:text="#{label.user.registration.form}"></h3>
                         </div>
-
                         <form role="form" action="#" th:action="@{/admin/user/management/save.do}" th:object="${user}" th:method="post" th:autocomplete="false" autocomplete="false">
-
                             <input type="hidden" id="id" th:field="*{id}">
                             <input type="hidden" id="person.id" th:field="*{person.id}">
                             <input type="hidden" id="person.address.id" th:field="*{person.address.id}">
@@ -209,13 +207,12 @@
 
                                 <div class="form-group">
                                     <div class="row">
-<!--                                        <div class="col-md-12">-->
                                             <div class="col-md-12">
                                                 <label for="role" th:text="#{label.roles}"></label>
                                             </div>
-                                            <div class="icheck-primary form-check-inline"
-                                                 th:each="role, status : ${rolesList}" id="role">
-                                                <input type="checkbox" class=""
+                                            <div class="icheck-primary form-check-inline" th:each="role, status : ${rolesList}" id="role">
+                                                <input type="checkbox"
+                                                       class=""
                                                        th:id="'rols_' + ${status.index}"
                                                        th:value="${role.id}"
                                                        th:field="*{userRoles}">
@@ -228,7 +225,6 @@
                                             <span th:if="${#fields.hasErrors('userRoles')}"
                                                   class="text-danger font-italic"
                                                   th:errors="*{userRoles}">User Roles error</span>
-<!--                                        </div>-->
                                     </div>
                                 </div> <!-- end form group -->
 

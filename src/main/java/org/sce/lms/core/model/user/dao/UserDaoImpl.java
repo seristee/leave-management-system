@@ -9,7 +9,8 @@ public class UserDaoImpl extends CoreAbastractDao implements UserDao {
 
     @Override
     public void save(User user) {
-        saveOrUpdateEntity(user);
+//        saveOrUpdateEntity(user);
+        mergeEntity(user);
     }
 
     @Override

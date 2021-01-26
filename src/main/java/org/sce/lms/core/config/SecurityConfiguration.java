@@ -44,7 +44,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private CustomAccessDeniedHandler accessDeniedHandler;
 
     @Autowired
-    CustomLogoutSuccessHandler customLogoutSuccessHandler;
+    private CustomLogoutSuccessHandler customLogoutSuccessHandler;
 
     @Autowired
     @Qualifier("customUserDetailsService")
@@ -80,12 +80,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .invalidSessionUrl("/logout.do?invalid_session")
                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).maximumSessions(1);
         http.logout()
+                .logoutSuccessHandler(customLogoutSuccessHandler)
                 .logoutUrl("/logout.do")
-                .logoutSuccessHandler(logoutSuccessHandler());
-//                .invalidateHttpSession(true)
-//                .clearAuthentication(true)
-//                .deleteCookies("JSESSIONID")
-//                .logoutSuccessUrl("/login.do");
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .deleteCookies("JSESSIONID")
+                .logoutSuccessUrl("/login.do");
         http.rememberMe().rememberMeParameter("remember-me")
                 .rememberMeCookieName("REMEMBER-ME-COOKIE")
                 .tokenRepository(persistentTokenRepository())

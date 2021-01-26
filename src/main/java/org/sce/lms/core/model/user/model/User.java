@@ -8,6 +8,7 @@ import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.SQLDelete;
+import org.sce.lms.core.config.converter.StringToRolesConverter;
 import org.sce.lms.core.model.ModifiableEntity;
 import org.sce.lms.core.model.person.Person;
 
@@ -57,6 +58,7 @@ public class User extends ModifiableEntity {
     @Fetch(FetchMode.SELECT)
     @JoinTable(name = "lms_user_authorities", joinColumns = {
             @JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "authority_id")}, foreignKey = @ForeignKey(name = "FK_USER_USER_AUTHORITY"))
+    @Convert(converter = StringToRolesConverter.class)
     private List<Authority> userRoles = new ArrayList<Authority>();
 
     @OneToOne(cascade = CascadeType.ALL)

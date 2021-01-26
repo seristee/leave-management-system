@@ -20,7 +20,7 @@ public class CustomLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler im
 
     @Override
     public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-
+        System.out.println("method called");
         Cookie cookie = new Cookie("JSESSIONID", null);
         cookie.setPath(request.getContextPath());
         cookie.setMaxAge(0);

@@ -51,13 +51,13 @@ public class LoginController extends GlobalController {
 
     @GetMapping("/logout.do")
     public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
-//        SecurityContextHolder.clearContext();
-//        if (request.getSession(false) != null) {
-//            request.getSession().invalidate();
-//        }
-//        for (Cookie cookie : request.getCookies()) {
-//            cookie.setMaxAge(0);
-//        }
+        SecurityContextHolder.clearContext();
+        if (request.getSession(false) != null) {
+            request.getSession().invalidate();
+        }
+        for (Cookie cookie : request.getCookies()) {
+            cookie.setMaxAge(0);
+        }
         return "redirect:/login.do";
     }
 }
