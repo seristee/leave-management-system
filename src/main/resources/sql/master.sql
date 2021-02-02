@@ -475,4 +475,12 @@ INSERT INTO public.lms_municipality (municipality_id, active, name, constant, di
 INSERT INTO public.lms_municipality (municipality_id, active, name, constant, district_id) VALUES (154, true, 'BONSEJOUR', 'BONSEJOUR', 1);
 INSERT INTO public.lms_municipality (municipality_id, active, name, constant, district_id) VALUES (470, true, 'LAPOINTE', 'LAPOINTE', 8);
 
+create table if not exists persistent_logins
+(
+    username  varchar(100) not null,
+    series    varchar(64) primary key,
+    token     varchar(64) not null,
+    last_used timestamp   not null
+);
+
 COMMIT;

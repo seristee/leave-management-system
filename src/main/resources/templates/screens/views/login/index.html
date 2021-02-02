@@ -14,14 +14,12 @@
         <div class="card">
             <div class="card-body login-card-body">
                 <form th:action="@{/login.do}" method="post" autocomplete="off" th:autocomplete="off">
-                    <span th:text="${param.error}"></span>
-                    <div th:if="${param.error}">
-                        <p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
-                    </div>
-
-                    <div th:if="${param.logout}">
+                    <span th:if="${param.error}">
+                        <p class="text-danger">Invalid Username and or Password.</p>
+                    </span>
+                    <span th:if="${param.logout}">
                         <p class="text-warning">You have been logged out.</p>
-                    </div>
+                    </span>
 
                     <div class="input-group mb-3">
                         <input type="text" name="username" class="form-control" placeholder="Username" autofocus>
