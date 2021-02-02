@@ -25,10 +25,10 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
-    <aside layout:replace="/layout/fragments/sidebar" class="main-sidebar sidebar-dark-primary elevation-4"></aside>
-    <nav layout:replace="/layout/fragments/main-header"></nav>
+    <aside layout:replace="~{/layout/fragments/sidebar}" class="main-sidebar sidebar-dark-primary elevation-4"></aside>
+    <nav layout:replace="~{/layout/fragments/main-header}"></nav>
     <div class="content-wrapper" layout:fragment="content"></div>
-    <footer class="main-footer" layout:replace="/layout/fragments/footer"></footer>
+    <footer class="main-footer" layout:replace="~{/layout/fragments/footer}"></footer>
 </div>
 <!-- SCRIPTS -->
 <script src="./webjars/jquery/3.5.1/jquery.min.js" th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
