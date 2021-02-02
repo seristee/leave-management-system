@@ -45,38 +45,21 @@ public class AdministrationController extends GlobalController {
     }
 
     @PostMapping("/user/management/save.do")
-    public String saveUser(HttpServletRequest request,@ModelAttribute("user") User user, BindingResult result,Model model){
-        List<Authority> authorityList = new ArrayList<Authority>();
-        try {
-            String[] roles = request.getParameterValues("userRoles");
-            if(roles.length > 0){
-                for (int i = 0; i < roles.length; i++) {
-                    Authority authority = (Authority) coreDao.getObjectById(Authority.class, Long.parseLong(roles[i]));
-                    authorityList.add(authority);
-                }
-                user.setUserRoles(authorityList);
-            }
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
+    public String saveUser(HttpServletRequest request,@ModelAttribute("user") @Valid User user, BindingResult result,Model model){
+        List<Authority> authorities = user.getUserRoles();
+        user.setUserRoles(authorities);
 
-        System.out.println(authorityList.size() + " => authorityList.size()");
-
-//        if(result.hasErrors() && authorityList.isEmpty()){
-//            return setAdminModels(model);
-//        } else {
+        if(result.hasErrors()){
+            return setAdminModels(model);
+        } else {
             User dbUser = (User) coreDao.getObjectByCriteria(User.class, "username", user.getUsername());
             user.getPerson().setDateOfBirth(convertToLocalDate(request.getParameter("person.dateOfBirth")));
-            if (user.getPassword().equals(user.getConfirmPassword())) {
+            System.out.println(user.toString());
                 if (!user.equals(dbUser)) {
-//                    userService.save(user);
                     user.toString();
+                    userService.save(user);
                 }
-            }
-            else {
-                System.out.println("passwords do not match");
-            }
-//        }
+        }
         return setAdminModels(model);
     }
 

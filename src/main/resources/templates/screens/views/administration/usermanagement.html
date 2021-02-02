@@ -211,11 +211,10 @@
                                                 <label for="role" th:text="#{label.roles}"></label>
                                             </div>
                                             <div class="icheck-primary form-check-inline" th:each="role, status : ${rolesList}" id="role">
-                                                <input type="checkbox"
-                                                       class=""
+                                                <input type="checkbox" class=""
                                                        th:id="'rols_' + ${status.index}"
                                                        th:value="${role.id}"
-                                                       th:field="*{userRoles}">
+                                                       th:field="*{userRoles[__${status.index}__].id}">
                                                 <label th:for="'rols_' + ${status.index}"
                                                        th:text="${role.constant}"></label>
                                                 <!--

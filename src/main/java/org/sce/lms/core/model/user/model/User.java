@@ -39,7 +39,7 @@ public class User extends ModifiableEntity {
     private String password;
 
     @Transient
-    @NotEmpty(message = "{validation.field.required}")
+//    @NotEmpty(message = "{validation.field.required}")
     private String confirmPassword;
 
     @Column(name = "disabled")
@@ -54,7 +54,7 @@ public class User extends ModifiableEntity {
     @Column(name = "account_locked")
     private boolean accountLocked;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SELECT)
     @JoinTable(name = "lms_user_authorities", joinColumns = {
             @JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "authority_id")}, foreignKey = @ForeignKey(name = "FK_USER_USER_AUTHORITY"))

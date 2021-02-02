@@ -38,7 +38,6 @@ public class Person extends ActivatableEntity {
     @Column(name = "date_of_birth")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Past(message = "Birth date should be less than current date!!")
-//    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateOfBirth;
 
     @OneToOne
