@@ -67,9 +67,10 @@ public abstract class CoreAbastractDao {
     }
 
     public void mergeEntity(Object object) {
+        getSession().flush();
+//        getSession().clear();
         getSession().evict(object);
         getSession().merge(object);
-        getSession().flush();
     }
 
     public Object getEntityById(Class<?> entity, Long id) {

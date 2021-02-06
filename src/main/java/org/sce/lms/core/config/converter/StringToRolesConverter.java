@@ -5,6 +5,7 @@ import org.apache.commons.logging.LogFactory;
 import org.sce.lms.core.dao.CoreDao;
 import org.sce.lms.core.model.user.model.Authority;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

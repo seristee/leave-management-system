@@ -67,7 +67,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/api/v1/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/v1/**").permitAll()
                 .antMatchers("/", "/login.do","/logout.do","/forgot/**").permitAll()
-                .antMatchers("/dashboard/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/dashboard/**").hasAnyRole("USER", "ADMIN", "GUEST")
                 .antMatchers("/admin/**").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/leave/**").hasAnyRole("USER", "ADMIN")
                 .anyRequest().authenticated();
@@ -104,7 +104,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     @Autowired
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("root").password(passwordEncoder().encode("test")).roles("ADMIN", "USER");
+        auth.inMemoryAuthentication().withUser("root").password(passwordEncoder().encode("test")).roles("ADMIN", "USER", "GUEST");
         auth.authenticationProvider(authenticationProvider());
     }
 

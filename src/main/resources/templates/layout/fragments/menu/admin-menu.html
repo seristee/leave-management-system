@@ -1,13 +1,14 @@
 <li class="nav-item" xmlns:th="http://www.thymeleaf.org">
     <a href="#" class="nav-link">
         <i class="nav-icon fas fa-copy"></i>
-        <p><span th:text="#{label.administration}"></span>
+        <p>
+            <span th:text="#{label.administration}"></span>
             <i class="fas fa-angle-left right"></i>
         </p>
     </a>
     <ul class="nav nav-treeview">
         <li class="nav-item">
-            <a th:href="@{/admin/profile/user/{userid}/get.do (userid=1)}"class="nav-link">
+            <a th:href="@{/admin/profile/user/{userid}/get.do (userid=9)}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p th:text="#{label.profile}"></p>
             </a>
