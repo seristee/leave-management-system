@@ -13,11 +13,30 @@
                 <p th:text="#{label.profile}"></p>
             </a>
         </li>
+
         <li class="nav-item">
             <a th:href="@{/admin/user/management/get.do}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p th:text="#{label.user.management}"></p>
             </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-circle"></i>
+                <p>
+                    <span th:text="#{label.cruds}"></span>
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview" style="display: none;">
+                <li class="nav-item">
+                    <a th:href="@{/admin/crud/roles/get.do}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p th:text="#{label.roles}">Level 2</p>
+                    </a>
+                </li>
+            </ul>
         </li>
     </ul>
 </li>

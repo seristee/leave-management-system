@@ -22,10 +22,10 @@ public class LoginController extends GlobalController {
     private CoreDao coreDao;
 
 
-    @GetMapping("/")
-    private String index(){
-        return "redirect:/login.do";
-    }
+//    @GetMapping("/")
+//    private String index(){
+//        return "redirect:/login.do";
+//    }
 
     @GetMapping("/login.do")
     private String home(){

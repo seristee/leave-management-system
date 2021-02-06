@@ -67,29 +67,32 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/api/v1/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/v1/**").permitAll()
                 .antMatchers("/", "/login.do","/logout.do","/forgot/**").permitAll()
-                .antMatchers("/dashboard/**").hasAnyRole("USER", "ADMIN", "GUEST")
+                .antMatchers("/dashboard/**").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/admin/**").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/leave/**").hasAnyRole("USER", "ADMIN")
                 .anyRequest().authenticated();
-        http.formLogin().loginPage("/login.do").permitAll()
+
+        http.formLogin().loginPage("/login.do")
                 .failureUrl("/login.do?fail")
                 .usernameParameter("username").passwordParameter("password")
                 .successHandler(successHandler);
+
         http.sessionManagement()
                 .sessionFixation().migrateSession()
-                .invalidSessionUrl("/logout.do?invalid_session")
                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).maximumSessions(1);
-        http.logout()
-                .logoutSuccessHandler(customLogoutSuccessHandler)
+
+        http.logout().logoutSuccessHandler(customLogoutSuccessHandler).permitAll()
                 .logoutUrl("/logout.do")
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
                 .deleteCookies("JSESSIONID")
                 .logoutSuccessUrl("/login.do");
+
         http.rememberMe().rememberMeParameter("remember-me")
                 .rememberMeCookieName("REMEMBER-ME-COOKIE")
                 .tokenRepository(persistentTokenRepository())
                 .tokenValiditySeconds(86400);
+
         http.exceptionHandling()
                 .accessDeniedHandler(accessDeniedHandler);
     }
@@ -104,8 +107,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     @Autowired
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("root").password(passwordEncoder().encode("test")).roles("ADMIN", "USER", "GUEST");
         auth.authenticationProvider(authenticationProvider());
+        auth.inMemoryAuthentication().withUser("root").password(passwordEncoder().encode("test")).roles("ADMIN", "USER", "GUEST");
     }
 
     @Override
@@ -126,19 +129,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new CustomLogoutSuccessHandler();
     }
 
-    //testing for cors
-    @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration corsConfiguration = new CorsConfiguration().applyPermitDefaultValues();
-        source.registerCorsConfiguration("/**", corsConfiguration);
-        return source;
-    }
-
     @Bean
     public HttpSessionEventPublisher httpSessionEventPublisher() {
         return new HttpSessionEventPublisher();
     }
-
 
 }
