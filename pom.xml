@@ -40,7 +40,7 @@
         <datatables-plugins.version>1.10.21</datatables-plugins.version>
         <bootstrap-daterangepicker.version>3.0.5</bootstrap-daterangepicker.version>
         <Eonasdan-bootstrap-datetimepicker.version>4.17.47</Eonasdan-bootstrap-datetimepicker.version>
-        <sweetalert2.version>10.12.5</sweetalert2.version>
+        <sweetalert2.version>10.13.2</sweetalert2.version>
         <passay.version>1.6.0</passay.version>
     </properties>
     <dependencies>

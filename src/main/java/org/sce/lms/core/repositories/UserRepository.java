@@ -1,4 +1,4 @@
-package org.sce.lms.core;
+package org.sce.lms.core.repositories;
 
 import org.sce.lms.core.model.user.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;

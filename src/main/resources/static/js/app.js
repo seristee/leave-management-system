@@ -15,12 +15,6 @@ $(function () {
     //     .addClass('menu-open').prev('a')
     //     .addClass('active');
 
-
-
-    //password reset
-
-
-
     //select2
     $('.select2').select2({
         placeholder: {
@@ -53,5 +47,24 @@ $(function () {
     });
     //datepicker
 
+    // delete button prompt
+    $('.delete').each(function() {
+       $(this).click(function (eve) {
+           // eve.preventDefault();
+           // Swal.fire({
+           //     title: 'Are you sure you want to delete this?',
+           //     text: "You won't be able to revert this!",
+           //     icon: 'warning',
+           //     showCancelButton: true,
+           //     confirmButtonColor: '#3085d6',
+           //     cancelButtonColor: '#d33',
+           //     confirmButtonText: 'Yes, delete it!'
+           // }).then((result) => {
+           //     if (result.isConfirmed) {
+           //         eve.returnValue = true;
+           //     }
+           // })
+       })
+    });
 
 });

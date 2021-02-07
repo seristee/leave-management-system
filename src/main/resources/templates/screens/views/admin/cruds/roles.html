@@ -48,7 +48,10 @@
                                     <td th:text="${role.constant}"></td>
                                     <td>
                                         <a th:href="@{/admin/crud/roles/{roleid}/edit.do (roleid=${role.id})}"
-                                           th:title="#{label.edit}"><i class="far fa-edit"></i></a>
+                                           th:title="#{label.edit}" ><i class="far fa-edit"></i></a>
+
+                                        <a th:href="@{/admin/crud/roles/{roleid}/delete.do (roleid=${role.id})}"
+                                           th:title="#{label.delete}" class="delete"><i class="fas fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                                 </tbody>

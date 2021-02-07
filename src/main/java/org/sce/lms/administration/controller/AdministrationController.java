@@ -12,6 +12,7 @@ import org.sce.lms.core.model.person.Gender;
 import org.sce.lms.core.model.person.Municipality;
 import org.sce.lms.core.model.user.model.Authority;
 import org.sce.lms.core.model.user.model.User;
+import org.sce.lms.core.repositories.UserRepository;
 import org.sce.lms.core.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,6 +33,9 @@ public class AdministrationController extends GlobalController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("/profile/user/{userid}/get.do")
     public String index(Model model, @PathVariable long userid){
@@ -57,7 +61,8 @@ public class AdministrationController extends GlobalController {
             System.out.println(user.toString());
                 if (!user.equals(dbUser)) {
                     user.toString();
-                    userService.save(user);
+//                    userService.save(user);
+                    userRepository.saveAndFlush(user);
                 }
         }
         return setAdminModels(model);

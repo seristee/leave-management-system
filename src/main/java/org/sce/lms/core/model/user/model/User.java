@@ -54,7 +54,7 @@ public class User extends ModifiableEntity {
     @Column(name = "account_locked")
     private boolean accountLocked;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @OneToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SELECT)
     @JoinTable(name = "lms_user_authorities", joinColumns = {
             @JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "authority_id")}, foreignKey = @ForeignKey(name = "FK_USER_USER_AUTHORITY"))

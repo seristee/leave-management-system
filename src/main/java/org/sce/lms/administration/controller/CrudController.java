@@ -1,5 +1,7 @@
 package org.sce.lms.administration.controller;
 
+import org.sce.lms.core.repositories.RoleRepository;
+import org.sce.lms.core.repositories.UserRepository;
 import org.sce.lms.core.controller.GlobalController;
 import org.sce.lms.core.dao.CoreDao;
 import org.sce.lms.core.model.user.model.Authority;
@@ -18,6 +20,13 @@ public class CrudController extends GlobalController {
     @Autowired
     private CoreDao coreDao;
 
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
+
+
     @GetMapping("/roles/get.do")
     public String getRoles(Model model){
         model.addAttribute("roles", new Authority());
@@ -35,7 +44,14 @@ public class CrudController extends GlobalController {
     @PostMapping("/roles/save.do")
     public String saveRoles(@ModelAttribute("roles") @Valid Authority authority, BindingResult result, Model model){
         authority.setConstant(authority.getName().toUpperCase());
-        coreDao.saveObject(authority);
+//        coreDao.saveObject(authority);
+        roleRepository.save(authority);
+        return "redirect:/admin/crud/roles/get.do";
+    }
+
+    @RequestMapping("/roles/{roleid}/delete.do")
+    public String deleteRole(@PathVariable Long roleid){
+        roleRepository.deleteById(roleid);
         return "redirect:/admin/crud/roles/get.do";
     }
 }
