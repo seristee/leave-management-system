@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/designs/master}">
+<head>
+    <title th:text="#{label.leave.type}"></title>
+</head>
+<body>
+<div layout:fragment="content">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-secondary">
+                        <div class="card-header">
+                            <h3 class="card-title" th:text="#{label.leave.type}"></h3>
+                        </div>
+                        <form th:action="@{/admin/crud/leave/type/save.do}" th:method="post" th:object="${leaveType}">
+                            <input type="hidden" id="id" th:field="*{id}">
+                            <div class="card-body">
+                                <div class="from-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="name" th:text="#{label.name}"></label>
+                                            <input type="text" class="form-control form-control-sm" th:field="*{name}" id="name">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-primary" type="submit" th:text="#{label.submit}">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card card-secondary">
+                        <div class="card-header">
+                            <h3 class="card-title" th:text="#{label.leave.type.list}"></h3>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-rounded table-hover table-striped table-bordered dataTable">
+                                <thead class="text-uppercase">
+                                <th th:text="#{label.id}">id</th>
+                                <th th:text="#{label.name}">name</th>
+                                <th></th>
+                                </thead>
+                                <tbody>
+                                <tr th:each="leave : ${leaveTypeList}">
+                                    <td th:text="${leave.id}"></td>
+                                    <td th:text="${leave.constant}"></td>
+                                    <td>
+                                        <a th:href="@{/admin/crud/leave/type/{leavetypeid}/edit.do (leavetypeid=${leave.id})}"
+                                           th:title="#{label.edit}" ><i class="far fa-edit"></i></a>
+
+                                        <a th:href="@{/admin/crud/leave/type/{leavetypeid}/delete.do (leavetypeid=${leave.id})}"
+                                           th:title="#{label.delete}" class="delete"><i class="fas fa-trash-alt"></i></a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>

@@ -45,7 +45,10 @@ $(function () {
             down: "fa fa-arrow-down"
         }
     });
-    //datepicker
+    //datetimepicker class
+    $('.dateTime').datetimepicker({
+        format: 'LT'
+    });
 
     // delete button prompt
     $('.delete').each(function() {

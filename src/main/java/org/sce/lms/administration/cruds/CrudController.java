@@ -1,10 +1,12 @@
-package org.sce.lms.administration.controller;
+package org.sce.lms.administration.cruds;
 
 import org.sce.lms.core.repositories.RoleRepository;
 import org.sce.lms.core.repositories.UserRepository;
 import org.sce.lms.core.controller.GlobalController;
 import org.sce.lms.core.dao.CoreDao;
 import org.sce.lms.core.model.user.model.Authority;
+import org.sce.lms.leave.model.LeaveType;
+import org.sce.lms.leave.repository.LeaveTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +28,8 @@ public class CrudController extends GlobalController {
     @Autowired
     private RoleRepository roleRepository;
 
+    @Autowired
+    private LeaveTypeRepository leaveTypeRepository;
 
     @GetMapping("/roles/get.do")
     public String getRoles(Model model){
@@ -44,7 +48,6 @@ public class CrudController extends GlobalController {
     @PostMapping("/roles/save.do")
     public String saveRoles(@ModelAttribute("roles") @Valid Authority authority, BindingResult result, Model model){
         authority.setConstant(authority.getName().toUpperCase());
-//        coreDao.saveObject(authority);
         roleRepository.save(authority);
         return "redirect:/admin/crud/roles/get.do";
     }
@@ -53,5 +56,32 @@ public class CrudController extends GlobalController {
     public String deleteRole(@PathVariable Long roleid){
         roleRepository.deleteById(roleid);
         return "redirect:/admin/crud/roles/get.do";
+    }
+
+    @GetMapping("/leave/type/get.do")
+    public String getLeaveType(Model model){
+        model.addAttribute("leaveType", new LeaveType());
+        model.addAttribute("leaveTypeList", leaveTypeRepository.findAll());
+        return "screens/views/admin/cruds/leavetype";
+    }
+
+    @PostMapping("/leave/type/save.do")
+    public String saveLeaveType(@ModelAttribute("roles") @Valid LeaveType leaveType, BindingResult result, Model model){
+        leaveType.setConstant(leaveType.getName().toUpperCase());
+        leaveTypeRepository.save(leaveType);
+        return "redirect:/admin/crud/leave/type/get.do";
+    }
+
+    @GetMapping("/leave/type/{leavetypeid}/edit.do")
+    public String editLeaveType(@PathVariable long leavetypeid, Model model, @ModelAttribute LeaveType leaveType){
+        model.addAttribute("leaveType", leaveTypeRepository.findById(leavetypeid));
+        model.addAttribute("leaveTypeList", leaveTypeRepository.findAll());
+        return "screens/views/admin/cruds/leavetype";
+    }
+
+    @RequestMapping("/leave/type/{leavetypeid}/delete.do")
+    public String deleteLeaveType(@PathVariable Long leavetypeid){
+        leaveTypeRepository.deleteById(leavetypeid);
+        return "redirect:/admin/crud/leave/type/get.do";
     }
 }

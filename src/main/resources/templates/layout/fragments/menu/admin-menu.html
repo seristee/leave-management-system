@@ -22,22 +22,38 @@
                         <p th:text="#{label.roles}">Level 2</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a th:href="@{/admin/crud/leave/type/get.do}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p th:text="#{label.leave.type}">Level 2</p>
+                    </a>
+                </li>
             </ul>
         </li>
-        
-        <li class="nav-item">
-            <a th:href="@{/admin/profile/user/{userid}/get.do (userid=9)}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p th:text="#{label.profile}"></p>
-            </a>
-        </li>
 
         <li class="nav-item">
-            <a th:href="@{/admin/user/management/get.do}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p th:text="#{label.user.management}"></p>
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-circle"></i>
+                <p>
+                    <span th:text="#{label.user}"></span>
+                    <i class="right fas fa-angle-left"></i>
+                </p>
             </a>
-        </li>
+            <ul class="nav nav-treeview" style="display: none;">
+                <li class="nav-item">
+                    <a th:href="@{/admin/profile/user/{userid}/get.do (userid=9)}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p th:text="#{label.profile}"></p>
+                    </a>
+                </li>
 
+                <li class="nav-item">
+                    <a th:href="@{/admin/user/management/get.do}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p th:text="#{label.user.management}"></p>
+                    </a>
+                </li>
+            </ul>
+        </li>
     </ul>
 </li>
