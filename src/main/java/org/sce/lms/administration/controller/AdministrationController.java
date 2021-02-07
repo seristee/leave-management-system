@@ -50,9 +50,6 @@ public class AdministrationController extends GlobalController {
 
     @PostMapping("/user/management/save.do")
     public String saveUser(HttpServletRequest request,@ModelAttribute("user") @Valid User user, BindingResult result,Model model){
-        List<Authority> authorities = user.getUserRoles();
-        user.setUserRoles(authorities);
-
         if(result.hasErrors()){
             return setAdminModels(model);
         } else {
