@@ -47,7 +47,8 @@ $(function () {
     });
     //datetimepicker class
     $('.dateTime').datetimepicker({
-        format: 'LT'
+        format: 'YYYY/MM/DD',
+        minDate: Date.now(),
     });
 
     // delete button prompt
