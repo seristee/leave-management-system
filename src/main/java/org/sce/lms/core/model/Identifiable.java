@@ -13,7 +13,7 @@ import java.io.Serializable;
 @SuperBuilder
 public abstract class Identifiable implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, updatable = false)
     protected Long id;
 

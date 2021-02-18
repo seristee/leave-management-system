@@ -29,6 +29,21 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <label for="leave-type" th:text="#{label.reason.for.leave}"></label>
+                                            <select th:field="*{leaveType.id}" class="form-control form-control-sm select2" id="leave-type">
+                                                <option value=""></option>
+                                                <option th:each="leaveType : ${leaveTypeList}"
+                                                        th:value="${leaveType.id}"
+                                                        th:text="${leaveType.constant}">Please select an option
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-footer">
                                 <button class="btn btn-primary" type="submit" th:text="#{label.submit}">Submit</button>

@@ -7,7 +7,7 @@
     </a>
     <ul class="nav nav-treeview">
         <li class="nav-item">
-            <a th:href="@{/leave/application/user/1/get.do}" class="nav-link">
+            <a th:href="@{/leave/application/user/{userid}/get.do (userid=${currentUser.id})}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p th:text="#{label.leave.application}"></p>
             </a>

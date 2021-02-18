@@ -58,7 +58,6 @@ public class AdministrationController extends GlobalController {
             System.out.println(user.toString());
                 if (!user.equals(dbUser)) {
                     user.toString();
-//                    userService.save(user);
                     userRepository.saveAndFlush(user);
                 }
         }
